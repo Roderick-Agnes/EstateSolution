@@ -1,0 +1,52 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "GuiMailTn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@using (Html.BeginForm("GuiMailTn", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+        <h3 style="margin-left:1.5%">Gửi tin nhắn đến Email của khách hàng</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            <div class="form-group container-fluid">
+                Họ và tên
+                <div class="col-md-12">
+                    <input type="hidden" name="MATN" class="form-control" value="@ViewBag.MATN" readonly />
+                    <input type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Gửi đến
+                <div class="col-md-12">
+                    <input type="text" name="EMAIL" class="form-control" value="@ViewBag.EMAIL" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Tiêu đề
+                <div class="col-md-12">
+                    <input type="text" name="TIEUDE" class="form-control" value="@ViewBag.TIEUDE " />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Nội dung
+                <div class="col-md-12">
+                    <textarea class="form-control" name="NOIDUNG" style="height:200px;">@ViewBag.NOIDUNG</textarea>
+                </div>
+            </div>
+            
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;margin-top:10px">
+                    <input type="submit" value="Gửi đi" class="btn btn-primary" />
+                </div>
+                <div class="col-md-1" style="padding-left: 0; padding-right: 0; margin-top: 10px">
+                    <a href="/Admin/Admin/QuanLyTinNhan"><button class="btn btn-danger">Back</button></a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+

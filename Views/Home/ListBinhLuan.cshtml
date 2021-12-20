@@ -1,0 +1,66 @@
+﻿@using EstateSolution.Models
+@using PagedList.Mvc
+@model PagedList.PagedList<BINHLUANDANHGIA>
+
+<a>@ViewBag.Tb</a>
+<form @*action="/User/LoginPage" method="post" enctype="multipart/form-data"*@>
+
+    @foreach (var item in Model)
+    {
+        
+        var i = 0; var y = 1;
+        <div class="form-group">
+            <div class="col-md-12" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 4px; margin-top: 10px; background-color: #fff; padding-top: 15px; padding-bottom: 15px;">
+
+                <div class="col-md-2" style="padding-left: 1px; padding-right: 0; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                    @if (item.THANHVIEN.ANH_DAI_DIEN.IsEmpty())
+                    {
+                        <img src="~/assets/Upload-Anh-Dai-Dien/account.png" width="80" height="auto" />
+                    }
+                    else
+                    {
+                        <img src="~/assets/Upload-Anh-Dai-Dien/@item.THANHVIEN.ANH_DAI_DIEN" width="80" height="auto" />
+                    }
+                </div>
+                <div class="col-md-10" style="padding-left:0;padding-right:0">
+                    <div class="col-md-12">@item.HOTEN <a class="text-right">
+                        <small>
+                            @if (item.SOSAO == 5)
+                            {
+                                for (; i < (int)item.SOSAO; i++)
+                                {
+                                    <i class="fa fa-star" style="color: #FFD700"></i>
+                                }
+                            }
+                            else if (item.SOSAO < 5)
+                            {
+                                for (; i < (int)item.SOSAO; i++)
+                                {
+                                    <i class="fa fa-star" style="color: #FFD700"></i>
+                                }
+                                for (; y <= 5 - (int)item.SOSAO; y++)
+                                {
+                                    <i class="fa fa-star-o" style="color: #FFD700"></i>
+                                }
+                            }
+                        </small></a></div>
+                    <div class="col-md-12">
+
+                        <a><small>@item.NGAYBL</small></a>@*@Html.FormatValue(@item.NGAYBL, "{0:dd/MM/yyyy}")*@
+
+                    </div>
+
+                </div>
+                <a><small>Nội dung:</small></a>
+                <div class="col-md-12 form-control" style="padding:15px;border:0.5px solid #f7f8fd;background-color: #ffff; margin-top: 5px; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;"><a><small style="color:#000">@item.NOIDUNG</small></a></div>
+                @Html.Action("ReplyCuaAdmin", "Home", new { mabl = item.MABL })
+                
+                
+
+
+            </div>
+        </div>
+        <br />
+    }
+
+</form>

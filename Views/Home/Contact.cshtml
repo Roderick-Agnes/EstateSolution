@@ -1,0 +1,97 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+@using (Html.BeginForm("Contact", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="page-head">
+        <div class="container">
+            <div class="row">
+                <div class="page-head-content">
+                    <h1 class="page-title">Contact with us</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End page header -->
+
+    <!-- property area -->
+    <div class="content-area recent-property padding-top-40" style="background-color: #FFF;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                    <div class="" id="contact1">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <h3><i class="fa fa-map-marker"></i> Address</h3>
+                                <p>
+                                    12/30 TL27, Thạnh Lộc, Quận 12
+                                    <strong>TP. Hồ Chí Minh</strong>
+                                </p>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                            <div class="col-sm-4">
+                                <h3><i class="fa fa-phone"></i> Call center</h3>
+                                <p class="text-muted">+8438 207 1075</p>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                            <div class="col-sm-4">
+                                <h3><i class="fa fa-envelope"></i> Trung Nhân Support</h3>
+                                <p class="text-muted">tn.estate.contact@gmail.com</p>
+                            </div>
+                            <!-- /.col-sm-4 -->
+                        </div>
+                        <!-- /.row -->
+                        <hr>
+
+                        <h2>Contact form</h2>
+                        <form action="" method="">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="firstname">Họ và tên</label>
+                                        <input type="text" class="form-control" id="firstname" name="HOTEN" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="email">Email</label>
+                                        <input type="email" class="form-control" id="email" name="EMAIL" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="lastname">Tiêu đề</label>
+                                        <input type="text" class="form-control" id="lastname" name="TIEUDE">
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="subject">Ảnh minh chứng</label>
+                                        <input type="file" class="form-control" id="subject" name="fFileUpload" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="message">Nội dung</label>
+                                        <textarea id="message" class="form-control" style="height:200px" name="NOIDUNG"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-sm-12 text-center">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send message</button>
+                                </div>
+                            </div>
+                            <!-- /.row -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="map" style="height: 400px;"></div>
+}
+

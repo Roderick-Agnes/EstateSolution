@@ -1,0 +1,43 @@
+﻿@using EstateSolution.Models
+@model List<CHITIETDONDATCOC>
+@helper Truncate(String s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length) <text> ... </text>
+    }
+}
+
+@foreach(var item in Model) { 
+    if(item != null) { 
+<div class="row" style="padding-bottom:1%;background-color:#fff;padding-left:0;padding-right:0">
+    <hr style="color:#808080;margin-bottom:1%" />
+    <div class="col-md-1" style=" font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@item.MADON</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@item.THANHVIEN.TENTHANHVIEN</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@item.LOAIBDS.TENLOAI</div>
+    <div class="col-md-3" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@Truncate(@item.BDS.TENBDS, 30)</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@String.Format("{0:0,0.0}", @Convert.ToDouble(@item.TONGTIEN * 1000000000 @*+ @item.TONGTIEN * 1000000000 * 10 / 100*@)) ₫</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">@Html.FormatValue(@item.DONDATCOC.NGAYHT, "{0:dd/MM/yyyy}")</div>
+</div>
+    }
+    else if(Convert.ToInt32(@ViewBag.SoLuongDon) == 0){
+<div class="row" style="padding-bottom:1%;background-color:#fff;padding-left:0;padding-right:0">
+    <hr style="color:#808080;margin-bottom:1%" />
+    <div class="col-md-1" style=" font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+    <div class="col-md-3" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+    <div class="col-md-2" style=" font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> @ViewBag.Tb</div>
+</div>
+    }
+}
+<div class="row" style="padding-bottom:1%;background-color:#fff;padding-left:0;padding-right:0">
+    <hr style="color:#808080;margin-bottom:1%" />
+    <div class="col-md-12 text-center" style=" color:#808080;font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;"><i class="fas fa-sync fa-table" style="color:#000000;font-size:15px;"></i> BẢNG DANH SÁCH ĐƠN ĐẶT CỌC TRONG THÁNG @ViewBag.THANG</div>
+</div>
+

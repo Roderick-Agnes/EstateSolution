@@ -1,0 +1,29 @@
+﻿@using EstateSolution.Models;
+@helper Truncate(String s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length) <text> ... </text>
+
+    }
+}
+@if (@ViewBag.STATE.Equals("1"))
+{
+    <td>@Truncate(@ViewBag.NOIDUNGPH, 10)</td>
+    <td><a href="@Url.Action("EditDg", new { ma = @ViewBag.MABL})" class=" btn btn-warning" role="button">Sửa</a></td>
+    <td><a href="@Url.Action("DetailDg", new { ma = @ViewBag.MABL, maBds = @ViewBag.MABDS})" class=" btn btn-primary" role="button">Chi tiết</a></td>
+    <td><a href="@Url.Action("DeleteDg", new { ma = @ViewBag.MABL })" class=" btn btn-danger" role="button">Xóa</a></td>
+    <td><a href="@Url.Action("EditAdminReplyDg", new { ma = @ViewBag.MABL, maBds = @ViewBag.MABDS, maNv = Request.QueryString["maNv"] })" class=" btn btn-success" role="button">Sửa phản hồi</a></td>
+}
+else if (@ViewBag.STATE.Equals("0"))
+{
+<td>@Truncate(@ViewBag.NOIDUNGPH, 15) </td>
+    <td><a href="@Url.Action("EditDg",new { ma = @ViewBag.MABL})" class=" btn btn-warning" role="button">Sửa</a></td>
+    <td><a href="@Url.Action("DetailDg", new{ ma = @ViewBag.MABL, maBds = @ViewBag.MABDS})" class=" btn btn-primary" role="button">Chi tiết</a></td>
+    <td><a href="@Url.Action("DeleteDg", new{ ma = @ViewBag.MABL})" class=" btn btn-danger" role="button">Xóa</a></td>
+    <td><a href="@Url.Action("ReplyDg", new{ ma = @ViewBag.MABL, maBds = @ViewBag.MABDS, maNv = Request.QueryString["maNv"]})" class=" btn btn-success" role="button">Phản hồi</a></td>
+}

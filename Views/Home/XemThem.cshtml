@@ -1,0 +1,36 @@
+﻿@using EstateSolution.Models;
+@{
+    Layout = null;
+}
+@helper Truncate(String str, int len)
+{
+    if (str.Length > len)
+    {
+        @str.Substring(0, len) <text> ... </text>
+
+    }
+    else
+    {
+        @str
+    }
+}
+<div class="panel-body recent-property-widget">
+    <ul>
+        @foreach (var item in Model)
+        {
+            <li>
+                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
+                    <a href="single.html"><img src="~/assets/img/img-data/@item.HINHANH" style="max-width:80%;max-height:auto" /></a>
+                    @*<span class="property-seeker">
+                            <b class="b-1">A</b>
+                            <b class="b-2">S</b>
+                        </span>*@
+                </div>
+                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
+                    <h6 style="margin-top: 0; margin-bottom: 0"> <a href="@Url.Action("Detail", "Home", new { idBds = item.MABDS, state = 0 })">@Truncate(@item.TENBDS, 40) </a></h6>
+                    <span style="margin-top:0" class="property-price">Mức giá: @item.GIA tỷ</span>
+                </div>
+            </li>
+        }
+    </ul>
+</div>

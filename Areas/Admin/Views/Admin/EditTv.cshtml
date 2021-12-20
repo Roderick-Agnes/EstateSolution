@@ -1,0 +1,118 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "EditTv";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("EditTv", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+        <h3 style="margin-left:1.5%">Chỉnh sửa thông tin thành viên</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            <div class="form-group container-fluid">
+                Mã thành viên
+                <div class="col-md-12">
+                    <input type="text" name="MATV" class="form-control" value="@ViewBag.MATV" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Họ và tên
+                <div class="col-md-12">
+                    <input type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" />
+                </div>
+            </div>
+
+
+            <div class="form-group container-fluid">
+                Giới tính
+                <div class="col-md-12">
+                    @Html.DropDownList("GIOITINH", null, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Địa chỉ
+                <div class="col-md-12">
+                    <input type="text" name="DIACHI" class="form-control" value="@ViewBag.DIACHI" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Email
+                <div class="col-md-12">
+                    <input type="email" name="EMAIL" class="form-control" value="@ViewBag.EMAIL" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Điện thoại
+                <div class="col-md-12">
+                    <input type="text" name="DIENTHOAI" class="form-control" value="@ViewBag.DIENTHOAI" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Ngày đăng ký thành viên
+                <div class="col-md-12">
+                    <input type="text" name="NGAYDKTK" class="form-control" value="@Html.FormatValue(@ViewBag.NGAYDKTK, "{0:dd/MM/yyyy}")" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Tài khoản
+                <div class="col-md-12">
+                    <input type="text" name="TAIKHOAN" class="form-control" value="@ViewBag.TAIKHOAN" required/>
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Mật khẩu
+                <div class="col-md-12">
+                    <input type="text" name="MATKHAU" class="form-control" value="@ViewBag.MATKHAU" required/>
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Facebook
+                <div class="col-md-12">
+                    <a href="@ViewBag.LINK_FACEBOOK"><input type="url" name="FACEBOOK" class="form-control" value="@ViewBag.LINK_FACEBOOK" /></a>
+                </div>
+            </div>
+            @if (@ViewBag.ANH_DAI_DIEN.Equals("") || @ViewBag.ANH_DAI_DIEN == null)
+            {
+                <div class="form-group container-fluid">
+                    Ảnh đại diện (<small style="color:red">Chưa có ảnh nào </small>)
+                    <div class="col-md-12">
+                        <input type="file" class="form-control" placeholder="Chưa cập nhật" name="ANHDAIDIEN" />
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="form-group container-fluid">
+                    Ảnh đại diện
+                    <div class="col-md-12">
+                        <img src="~/assets/Upload-Anh-Dai-Dien/@ViewBag.ANH_DAI_DIEN" style="width:70px;height:auto" />
+                    </div>
+                </div>
+                <div class="form-group container-fluid">
+                    Cập nhật ảnh mới
+                    <div class="col-md-12">
+                        <input type="file" class="form-control" placeholder="Chưa cập nhật" name="ANHDAIDIEN" />
+                    </div>
+                </div>
+
+            }
+
+
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+                <div class="col-md-1" style="padding-left: 0; padding-right: 0">
+                    <a href="/Admin/Admin/QuanLyThanhVien"><button class="btn btn-danger">Back</button></a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+}
+
+

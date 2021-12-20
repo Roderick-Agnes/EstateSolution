@@ -1,0 +1,110 @@
+﻿@using EstateSolution.Models
+@model MonthObject
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<head>
+
+    <script>
+window.onload = function () {
+    var m = @ViewBag.MONTH;
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	theme: "dark2", //"light2", "dark1", "dark2"
+	title: {
+		text: "Bảng thống kê doanh thu đặt cọc "
+	},
+	subtitles: [{
+		text: "Theo tháng " + m ,//"Logarithmic Y-Axis",
+		fontSize: 18
+	}],
+	axisY: {
+        title: "Doanh thu (VND)",
+        logarithmic: false
+	},
+    data: [{
+
+		type: "column",
+		indexLabelFontColor: "white",
+		indexLabel: "{y}",
+		indexLabelFontSize: 16,
+		yValueFormatString: "#,##0.# VND",
+		toolTipContent: "<b>{label}: {y}</b>",
+		dataPoints:  @Html.Raw(@ViewBag.DataPoints)
+	}]
+});
+chart.render();
+
+}
+    </script>
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/assets/icon/themify-icons/themify-icons.css">
+    <link rel="stylesheet" type="text/css" href="~/Areas/Admin/assets/icon/font-awesome/css/font-awesome.min.css">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="~/Areasassets/icon/icofont/css/icofont.css">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="~/Areasassets/css/style.css">
+</head>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    @using (Html.BeginForm("GetMonthSelected", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal container-fluid" style="padding-top:1%;padding-left:0;padding-right:0">
+            <div class="form-group container-fluid">
+                <div id="chartContainer" style="height: 370px; width: 100%;"></div>
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Chọn tháng
+            <div class="col-md-12">
+                @Html.DropDownList("months", @ViewBag.months as SelectList, new { @class = "form-control" })
+            </div>
+        </div>
+
+
+
+        <br />
+        <div class="form-group container-fluid">
+            <div class="col-md-1" style="padding-left: 0;">
+                <input type="submit" value="Lọc" class="btn btn-primary" />
+            </div>
+
+        </div>
+
+        <div class="form-group container-fluid" style="margin-top:20px">
+            <div class="col-md-12 row">
+                @if (Request.QueryString["month"] == null)
+                {
+                    @Html.Action("PartialCart", "Admin", new { month = DateTime.Now.ToString() })
+                }
+                else
+                {
+                    @Html.Action("PartialCart", "Admin", new { month = Request.QueryString["month"] })
+                }
+
+            </div>
+
+        </div>
+        <div class="form-group container-fluid" style="margin-top:20px">
+            <div class="col-md-12" style="padding:1%;padding-bottom:0;background-image: linear-gradient(to right, #ffbc96, #ffb594, #ffae93, #ffa893, #ffa194, #ff9c94, #ff9794, #fe9295, #fe8d95, #fe8995, #fe8495, #fe7f96); border: 0.5px solid #f7f8f7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                
+                <div class="row" style="padding-bottom: 1%; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                    <div class="col-md-1" style="color:#fff; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight:bold">Mã đơn</div>
+                    <div class="col-md-2" style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold">Tên khách hàng</div>
+                    <div class="col-md-2" style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold">Loại bất động sản</div>
+                    <div class="col-md-3" style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold">Tên bất động sản</div>
+                    <div class="col-md-2" style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold">Số tiền nhận được</div>
+                    <div class="col-md-2" style="color: #fff; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; font-weight: bold">Ngày xử lý đặt cọc</div>
+                    @*<hr style="color:#fff;margin-top:1%" />*@
+                </div>
+                
+                @Html.Action("ListDonPartial", "Admin", new { month = Request.QueryString["month"] })
+
+            </div>
+
+        </div>
+
+    }
+</div>
+<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>

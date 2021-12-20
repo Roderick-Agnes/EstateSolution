@@ -1,0 +1,75 @@
+﻿@using EstateSolution.Models
+@model List<GioHang>
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@{
+    THANHVIEN kh = (THANHVIEN)Session["TAIKHOAN"];
+}
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title"> Kiểm tra thông tin </h1>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="" style="background-color:#f7f8fd; max-height:100%">
+    <div class="container">
+        <div class="row" style="margin-top: 1%; margin-bottom: 1%;">
+            <div class="col-md-12" style="background-color: #fff; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 1% ">
+                <h3 style="text-align:center">Xác nhận thông tin</h3>
+                <hr>
+                <div class="col-md-3">
+                    
+                </div>
+                @using (Html.BeginForm())
+                {
+                    //@Html.ValidationSummary(true)
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Họ và tên</label>
+                            <input type="text" class="form-control" name="ten" value="@kh.TENTHANHVIEN">
+                        </div>
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Email</label>
+                            <input type="text" class="form-control" name="email" value="@kh.EMAIL">
+                        </div>
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Điện thoại</label>
+                            <input type="text" class="form-control" name="dienthoai" value="@kh.DIENTHOAI">
+                        </div>
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Địa chỉ</label>
+                            <input type="text" class="form-control" name="diachi" value="@kh.DIACHI">
+                        </div>
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Mã đơn hàng</label>
+                            <input type="text" class="form-control" name="madonhang" value="@ViewBag.MaDonHang" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="TAIKHOAN">Tổng tiền</label>
+                            <input type="text" class="form-control" name="tongtien" value="@ViewBag.TongTien tỷ VND" readonly>
+                        </div>
+                        <div class="col-md-6" style="padding-left:0">
+                            <div class="text-left" style="margin-bottom:5%; color:#fff">
+                                <a href="@Url.Action("HuyDonHang", "GioHang")"><button type="button" class="btn btn-default" style="color:#fff"> Hủy</button></a>
+                                <a><button type="submit" class="btn btn-default" style="color:#fff"> Xác nhận</button></a>
+                            </div>
+                        </div>
+                        
+
+                    </div>
+                }
+
+                
+                <div class="col-md-3"></div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+

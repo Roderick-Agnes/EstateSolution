@@ -1,0 +1,15 @@
+﻿@using EstateSolution.Models
+@{ 
+    int i = 0;
+}
+@foreach (var item in Model)
+{
+        i++;
+        <div class="form-group container-fluid">
+            Ảnh slide @i
+            <div class="col-md-12">
+                <img src="~/assets/img/img-data/@item.HINHANH" width="150" height="auto" />
+            </div>
+        </div>
+
+}

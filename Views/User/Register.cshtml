@@ -1,0 +1,110 @@
+﻿
+@{
+    ViewBag.Title = "Register";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@using (Html.BeginForm("Register", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="page-head">
+        <div class="container">
+            <div class="row">
+                <div class="page-head-content">
+                    <h1 class="page-title"> Đăng ký thành viên </h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End page header -->
+    <!-- register-area -->
+    <div class="register-area" style="background-color: rgb(249, 249, 249);">
+        <div class="container">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="box-for overflow">
+                    <div class="col-md-12 col-xs-12 register-blocks">
+                        <div style="text-align:center">
+                            <h2>Tạo tài khoản mới: </h2>
+                        </div>
+                        <form action="" method="post">
+                            <div class="form-group">
+                                <label for="name">Họ và tên<small style="color:red"> (*)</small></label>
+                                <input type="text" class="form-control" id="name" name="HoTenTV" value=@ViewBag.HoTenTV>
+                                <small style="color:red;text-align:right">@ViewData["err1"]</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email<small style="color:red"> (*)</small></label>
+                                <input type="text" class="form-control" id="email" name="Email" value=@ViewData["Email"]>
+                                <small style="color:red;text-align:right">@ViewData["err5"]</small>
+                                <small style="color:red;text-align:right">@ViewData["err11"]</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Giới tính</label>
+                                <select class="form-control" id="" name="GioiTinh">
+                                    @if (@ViewData["GioiTinh"] != null && @ViewData["GioiTinh"].Equals("Nữ"))
+                                    {
+                                        <option>Nữ</option>
+                                        <option>Nam</option>
+                                    }
+                                    else
+                                    {
+                                        <option>Nam</option>
+                                        <option>Nữ</option>
+                                    }
+
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Địa chỉ</label>
+                                <input type="text" class="form-control" id="" name="DiaChi" value=@ViewData["DiaChi"]>
+                                <small style="color:red;text-align:right">@ViewData["err6"]</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Điện thoại<small style="color:red"> (*)</small></label>
+                                <input type="text" class="form-control" id="" name="DienThoai" value=@ViewData["DienThoai"]>
+                                <small style="color:red;text-align:right">@ViewData["err7"]</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Tên đăng nhập<small style="color:red"> (*)</small></label>
+                                <input type="text" class="form-control" id="" name="UserName" value=@ViewData["UserName"]>
+                                <small style="color:red;text-align:right">@ViewData["err2"]</small>
+                                <small style="color:red;text-align:right">@ViewData["err10"]</small>
+
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Password<small style="color:red"> (*)</small></label>
+                                <input type="password" class="show-pass form-control" id="password" name="password" value=@ViewData["Password"]>
+                                <div style="text-align: right">
+                                    <i class="fa fa-eye-slash" id="icon-fa-eye" style="position:absolute;margin-top:-29px;margin-left:-20px;"></i>
+                                </div>
+                                <small style="color:red;text-align:right">@ViewData["err3"]</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="password">Confirm Password<small style="color:red"> (*)</small></label>
+                                <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" value=@ViewData["ConfirmPassword"]>
+                                <div style="text-align: right">
+                                    <i class="fa fa-eye-slash" id="icon-fa-cfeye" style="position:absolute;margin-top:-29px;margin-left:-20px;"></i>
+                                </div>
+                                <small style="color:red;text-align:right">@ViewData["err4"]</small>
+                                <small style="color:red;text-align:right">@ViewData["err9"]</small>
+                            </div>
+
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-default">Đăng ký</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="~/assets/js/Register.js"></script>
+
+}

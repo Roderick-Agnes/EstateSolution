@@ -1,0 +1,51 @@
+﻿@using EstateSolution.Models
+@model List<CartLoai>
+@{ 
+    int n = 0;
+}
+@foreach (var item in Model) {
+    if (n == 0)
+    {
+        <div class="col-md-3" style="margin-bottom:10px; margin-left: 1%; width: 24%; height: auto; background-image: linear-gradient(to right, #ffbc96, #ffb594, #ffae93, #ffa893, #ffa194, #ff9c94, #ff9794, #fe9295, #fe8d95, #fe8995, #fe8495, #fe7f96); border: 0.5px solid #f7f8f7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 10px ">
+            <div style="padding:5%">
+                <h3 style="color:#fff">@item.tenLoai</h3>
+                <a style="color:#fff">Số lượng đơn: @item.soLuongDon</a><br />
+                <a style="color:#fff">Doanh thu: @String.Format("{0:0,0.0}", @Convert.ToDouble(@item.doanhThu)) ₫</a>
+            </div>
+        </div>
+        n += 1;
+    }
+    else if (n == 1)
+    {
+<div class="col-md-3" style="margin-bottom: 10px; margin-left: 1%; width: 24%; height: auto; background-image: linear-gradient(to right, #f9daa1, #fad696, #fbd38c, #fccf81, #fdcb77, #fec670, #fec269, #ffbd63, #ffb75f, #ffb25b, #ffac58, #ffa655); border-radius: 10px ">
+    <div style="padding:5%">
+        <h3 style="color:#fff">@item.tenLoai</h3>
+        <a style="color:#fff">Số lượng đơn: @item.soLuongDon</a><br />
+        <a style="color:#fff">Doanh thu: @String.Format("{0:0,0.0}", @Convert.ToDouble(@item.doanhThu)) ₫</a>
+    </div>
+</div>
+        n += 1;
+    }
+    else if (n == 2)
+    {
+<div class="col-md-3" style="margin-bottom: 10px; margin-left: 1%; width: 24%; height: auto; background-image: linear-gradient(to right, #8ac7f8, #7fc1f6, #74baf4, #68b4f1, #5cadef, #53a8ed, #4aa3ec, #419eea, #3a9ae9, #3296e7, #2991e6, #208de4); border: 0.5px solid #f7f8f7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 10px ">
+    <div style="padding:5%">
+        <h3 style="color:#fff">@item.tenLoai</h3>
+        <a style="color:#fff">Số lượng đơn: @item.soLuongDon</a><br />
+        <a style="color:#fff">Doanh thu: @String.Format("{0:0,0.0}", @Convert.ToDouble(@item.doanhThu)) ₫</a>
+    </div>
+</div>
+        n += 1;
+    }
+    else if(n == 3){
+<div class="col-md-3" style="margin-bottom: 10px; margin-left: 1%; width: 24%; height: auto; background-image: linear-gradient(to right, #90d6d0, #84d5cd, #78d4ca, #6bd2c6, #5dd1c2, #53d1c0, #49d0bd, #3dd0ba, #34d0b8, #29d1b6, #1bd1b3, #02d1b1); border-radius: 10px ">
+    <div style="padding:5%">
+        <h3 style="color:#fff">@item.tenLoai</h3>
+        <a style="color:#fff">Số lượng đơn: @item.soLuongDon</a><br />
+        <a style="color:#fff">Doanh thu: @String.Format("{0:0,0.0}", @Convert.ToDouble(@item.doanhThu)) ₫</a>
+    </div>
+</div>
+        n = 0;
+    }
+
+}

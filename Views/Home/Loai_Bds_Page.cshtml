@@ -1,0 +1,136 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "Loai_Bds_Page";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+@helper Truncate(String str, int len)
+{
+    if (str.Length > len)
+    {
+        @str.Substring(0, len) <text> ... </text>
+
+    }
+    else
+    {
+        @str
+    }
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">@ViewBag.TenLoai</h1>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- property area -->
+<div class="properties-area recent-property" style="background-color: #FFF;">
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-3 p0 padding-top-40">
+                <div class="blog-asside-right pr0">
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                        @Html.Action("SearchRcm", "Search")
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated" style="margin-top:40%">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Recommended</h3>
+                        </div>
+                        @Html.Action("XemThem", "Home")
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-9  pr0 padding-top-40 properties-page">
+                <div class="col-md-12 clear">
+                    <div class="col-xs-10 page-subheader sorting pl0">
+                        <ul class="sort-by-list">
+                            <li class="active" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" id="shortDate">
+                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC" onclick="myFunctionDate()">
+                                    Sắp xếp theo ngày <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </li>
+                            <li class="" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" id="shortMoney">
+                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC" onclick="myFunctionMoney()">
+                                    Sắp xếp theo giá <i class="fa fa-sort-numeric-desc"></i>
+                                </a>
+                            </li>
+                        </ul><!--/ .sort-by-list-->
+
+                    </div>
+
+                    <div class="col-xs-2 layout-switcher">
+                        <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
+                        <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
+                    </div><!--/ .layout-switcher-->
+                </div>
+
+                <div class="col-md-12 clear" id="loadShortDatePage">
+                    @Html.Action("Loai_Bds_Page_ShortDate", "Home", new { id = (@ViewBag.MaLoai) })
+                </div>
+                <div class="col-md-12 clear" id="loadShortMoneyPage" style="display:none">
+                    @Html.Action("Loai_Bds_Page_ShortMoney", "Home", new { id = (@ViewBag.MaLoai) })
+                </div>
+
+                <div class="col-md-12">
+                    <div class="pull-right">
+                        <div class="pagination">
+                            <ul>
+                                <li><a href="#">Prev</a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">Next</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>*@
+<script>
+
+    function myFunctionDate() {
+        var elementDate = document.getElementById("shortDate");
+        var elementMoney = document.getElementById("shortMoney");
+        elementMoney.classList.remove("active");
+        elementDate.classList.add("active");
+        $("#loadShortDatePage").show();
+        $("#loadShortMoneyPage").hide();
+        //var s = "date";
+        //$.ajax({
+        //    url: "/Home/Loai_Bds_Page",
+        //    data: s,
+        //    type: "POST",
+        //    contentType: "application/json;charset=utf-8",
+        //    dataType: "json",
+        //    success: function (result) {
+        //        alert("OK");
+        //    },
+        //    error: function (errormessage) {
+        //        alert(errormessage.responseText);
+        //    }
+        //});
+
+    }
+    function myFunctionMoney() {
+        var elementDate = document.getElementById("shortDate");
+        var elementMoney = document.getElementById("shortMoney");
+        elementMoney.classList.add("active");
+        elementDate.classList.remove("active");
+        $("#loadShortDatePage").hide();
+        $("#loadShortMoneyPage").show();
+    }
+
+
+</script>
+
+
+

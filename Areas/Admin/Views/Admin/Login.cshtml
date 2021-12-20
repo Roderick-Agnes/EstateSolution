@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="box-for overflow">
+                    <div class="col-md-12 col-xs-12 login-blocks">
+                        <div style="text-align:center">
+                            <img src="~/assets/img/img-data/logo.png" width="70%" height="auto" />
+                            <h2 style="font-family:'Times New Roman', Times, serif">Login Admin Page </h2>
+                        </div>
+
+                        <form action="~/Admin/Admin/Login" method="post" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label for="TAIKHOAN">Tài khoản</label>
+                                <input type="text" class="form-control" name="TAIKHOAN" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" class="form-control" id="password" name="MATKHAU" required>
+                                @*<div style="text-align: right">
+                                    <i class="fa fa-eye-slash" id="icon-fa-eye" style="position:absolute;margin-top:-29px;margin-left:-28px"></i>
+                                </div>*@
+                                <small style="color:red;text-align:right">@ViewBag.ThongBao</small>
+                            </div>
+                            <br />
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary form-control"> Đăng nhập</button>
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script>
+
+    $("#icon-fa-eye").click(function (e) {
+        e.preventDefault();
+        var type = $("#password").attr('type');
+        switch (type) {
+            case 'password':
+                {
+                    $("#password").attr('type', 'text');
+                    $("#icon-fa-eye").attr('class', "fa fa-eye")
+                    return;
+                }
+            case 'text':
+                {
+                    $("#password").attr('type', 'password');
+                    $("#icon-fa-eye").attr('class', "fa fa-eye-slash")
+                    return;
+                }
+        }
+    });
+    $("#icon-fa-cfeye").click(function (e) {
+        e.preventDefault();
+        var type = $("#confirmPassword").attr('type');
+        switch (type) {
+            case 'password':
+                {
+                    $("#confirmPassword").attr('type', 'text');
+                    $("#icon-fa-cfeye").attr('class', "fa fa-eye")
+                    return;
+                }
+            case 'text':
+                {
+                    $("#confirmPassword").attr('type', 'password');
+                    $("#icon-fa-cfeye").attr('class', "fa fa-eye-slash")
+                    return;
+                }
+        }
+    });
+
+</script>
+
+

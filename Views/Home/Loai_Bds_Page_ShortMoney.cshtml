@@ -1,0 +1,39 @@
+﻿@using EstateSolution.Models;
+@{
+    Layout = null;
+}
+@helper Truncate(String str, int len)
+{
+    if (str.Length > len)
+    {
+        @str.Substring(0, len) <text> ... </text>
+
+    }
+    else
+    {
+        @str
+    }
+}
+<div id="list-type" class="proerty-th">
+    @foreach (var item in Model)
+    {
+        <div class="col-sm-6 col-md-4 p0">
+            <div class="box-two proerty-item">
+                <div class="item-thumb">
+                    <a href="@Url.Action("Detail", "Home", new { idBds = item.MABDS, state = 0 })"><img src="~/assets/img/img-data/@item.HINHANH" style="height:300px;width:auto;"></a>
+                </div>
+
+                <div class="item-entry overflow">
+                    <h5><a href="@Url.Action("Detail", "Home", new { idBds = item.MABDS, state = 0 })"> @Truncate(@item.TENBDS, 30) </a></h5>
+                    <div class="dot-hr"></div>
+                    <span class="pull-left"><b> Ngày đăng:</b> @Html.FormatValue(item.NGAYDANG, "{0:dd/MM/yyyy}") </span>
+                    <span class="proerty-price pull-right"> @item.GIA tỷ</span>
+                    <p style="display: none;">@Truncate(@item.THONGTIN, 119)</p>
+                </div>
+
+            </div>
+        </div>
+    }
+
+</div>
+

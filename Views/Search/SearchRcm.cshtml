@@ -1,0 +1,43 @@
+﻿@using EstateSolution.Models;
+@{
+    Layout = null;
+}
+<div class="panel-heading">
+    <h3 class="panel-title">Tìm kiếm</h3>
+</div>
+<div class="panel-body search-widget">
+    <form action="/Search/SearchPage" method="post" class=" form-inline">
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input type="text" class="form-control" placeholder="Nhập từ khóa" name="txtTimKiem">
+                </div>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+
+                    <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Chọn loại bất động sản" name="typeBds">
+                        @foreach (var item in Model)
+                        {
+                            <option>@item.TENLOAI</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+
+
+        <fieldset>
+            <div class="row">
+                <div class="col-xs-12">
+                    <input class="button btn largesearch-btn" value="Search" type="submit">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+

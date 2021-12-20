@@ -1,0 +1,81 @@
+﻿@using EstateSolution.Models
+@{
+    ViewBag.Title = "QuanLyLoaiBDS";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@helper Truncate(String s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length) <text> ... </text>
+
+    }
+}
+@{
+    NHANVIEN tv = (NHANVIEN)Session["NHANVIEN"];
+}
+<main>
+    <div class="container-fluid px-4">
+        <h3 class="mt-4">QUẢN LÝ LOẠI BẤT ĐỘNG SẢN</h3>
+        <div class="mb-4" style="margin-top:1%">
+
+            <a href="@Url.Action("CreateLoaiBds","Admin")" class=" btn btn-success" role="button" style="color:white"><i class="fas fa-plus-circle"></i> Thêm loại bất động sản</a>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Bảng danh sách loại bất động sản
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Mã loại</th>
+                            <th>Tên Loại</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã loại</th>
+                            <th>Tên Loại</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var i in Model)
+                        {
+                            <tr>
+                                <td>@i.MALOAI</td>
+                                <td>@i.TENLOAI</td>
+                                <td><a href="@Url.Action("EditLoaiBds",new { ma = @i.MALOAI})" class=" btn btn-warning" role="button"><i class="fas fa-edit"></i> Sửa</a></td>
+                                <td><a href="@Url.Action("DetailLoaiBds", new{ ma = @i.MALOAI})" class=" btn btn-primary" role="button"><i class="fas fa-eye"></i> Chi tiết</a></td>
+                                <td><a href="@Url.Action("DeleteLoaiBds", new{ ma = @i.MALOAI})" class=" btn btn-danger" role="button"><i class="fas fa-trash"></i> Xóa</a></td>
+
+                            </tr>
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+

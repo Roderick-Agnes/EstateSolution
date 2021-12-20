@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "LoginPage";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="page-head">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title"> Đăng nhập </h1>
+            </div>
+        </div>
+    </div>
+</div>
+@*@using (Html.BeginForm("Login", "User"))
+    {
+        @Html.ValidationSummary(true)*@
+<div class="register-area" style="background-color: rgb(249, 249, 249);">
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <div class="box-for overflow">
+                <div class="col-md-12 col-xs-12 login-blocks">
+                    <div style="text-align:center">
+                        <h2>Login </h2>
+                    </div>
+                    @if (@ViewBag.ThongBao != null)
+                    {
+                        <div style="text-align:center">
+                            <h2><small style="color:red;text-align:right">@ViewBag.ThongBao</small></h2>
+                        </div>
+                    }
+                    @using (Html.BeginForm("LoginPage", "User", new { id = Request.QueryString["id"] }))
+                    {
+                        @*<input type="hidden" class="form-control" name="IdBds" value="@Request.QueryString["tb"]">*@
+                        <input type="hidden" class="form-control" name="IdBds" value="@Request.QueryString["tb"]">
+                        <input type="hidden" class="form-control" name="ID" value="@Request.QueryString["id"]">
+                        <input type="hidden" class="form-control" name="IdBds2" value="@ViewBag.IdBds">
+                        <input type="hidden" class="form-control" name="ID2" value="@ViewBag.ID">
+                        @Html.ValidationSummary(true)
+                        <form @*action="/User/LoginPage" method="post" enctype="multipart/form-data"*@>
+                            <div class="form-group">
+                                <label for="TAIKHOAN">Tài khoản</label>
+                                <input type="text" class="form-control" name="TAIKHOAN">
+                                <small style="color:red;text-align:right">@ViewData["err1"]</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Mật khẩu</label>
+                                <input type="password" class="form-control" id="password" name="MATKHAU">
+                                <div style="text-align: right">
+                                    <i class="fa fa-eye-slash" id="icon-fa-eye" style="position:absolute;margin-top:-29px;margin-left:-20px;"></i>
+                                </div>
+                                <small style="color:red;text-align:right">@ViewData["err2"]</small>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-default"> Đăng nhập</button>
+                            </div>
+                        </form>
+                    }
+
+                    <br>
+
+                    <h2>Social login :  </h2>
+
+                    <p>
+                        <a class="login-social" href="#"><i class="fa fa-facebook"></i>&nbsp;Facebook</a>
+                        <a class="login-social" href="#"><i class="fa fa-google-plus"></i>&nbsp;Gmail</a>
+                    </p>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</div>
+
+@*}*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="~/assets/js/Register.js"></script>
+
+
+

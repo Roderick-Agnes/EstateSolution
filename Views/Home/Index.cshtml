@@ -1,0 +1,104 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutUser.cshtml";
+}
+
+<div class="slider-area">
+    <div class="slider">
+        <div id="bg-slider" class="owl-carousel owl-theme">
+
+            <div class="item"><img src="~/assets/img/slide1/slider-image-1.jpg" alt="Mirror Edge"></div>
+            <div class="item"><img src="~/assets/img/slide1/slider-image-2.jpg" alt="The Last of us"></div>
+            <div class="item"><img src="~/assets/img/slide1/slider-image-4.jpg" alt="GTA V"></div>
+
+        </div>
+    </div>
+    <div class="container slider-content">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                <h2>TRUNG NHÂN ESTATE</h2>
+                <p>Đặt cọc trước bất động sản mà bạn muốn</p>
+                <div class="search-form wow pulse container" data-wow-delay="0.8s" style="max-width:80%">
+                    @*@using (Html.BeginForm("SearchPage", "Search", FormMethod.Post))
+                        {*@
+                    <form action="/Search/SearchPage" method="post" class="form-inline">
+                        <button class="btn  toggle-btn" type="button"><i class="fa fa-bars"></i></button>
+
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nhập từ khóa..." name="txtTimKiem">
+                        </div>
+                        @Html.Action("BDS_TYPE", "Home")
+
+                        <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button>
+
+                        @*@Html.Action("BDS_TYPE", "Home")*@
+
+                    </form>
+                    @*}*@
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- property area -->
+<div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12  padding-top-40 properties-page">
+                <div class="col-md-12 ">
+                    <div class="col-xs-10 page-subheader sorting pl0">
+
+                        <ul class="sort-by-list">
+                            <li class="active" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" id="shortDate">
+                                <a href="javascript:void(0);" class="order_by_date" data-orderby="property_date" data-order="ASC" onclick="myFunctionDate()">
+                                    Sắp xếp theo ngày <i class="fa fa-sort-amount-asc"></i>
+                                </a>
+                            </li>
+                            <li class="" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;" id="shortMoney">
+                                <a href="javascript:void(0);" class="order_by_price" data-orderby="property_price" data-order="DESC" onclick="myFunctionMoney()">
+                                    Sắp xếp theo giá <i class="fa fa-sort-numeric-desc"></i>
+                                </a>
+                            </li>
+                        </ul><!--/ .sort-by-list-->
+                    </div>
+
+                    <div class="col-xs-2 layout-switcher">
+                        <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
+                        <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
+                    </div><!--/ .layout-switcher-->
+                </div>
+                <br>
+
+                <div class="col-md-12" id="shortDatePage">
+                    @Html.Action("ShortDatePage", "Home")
+                </div>
+                <div class="col-md-12" id="shortMoneyPage" style="display:none">
+                    @Html.Action("ShortMoneyPage", "Home")
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function myFunctionDate() {
+        var elementDate = document.getElementById("shortDate");
+        var elementMoney = document.getElementById("shortMoney");
+        elementMoney.classList.remove("active");
+        elementDate.classList.add("active");
+        $("#shortDatePage").show();
+        $("#shortMoneyPage").hide();
+    }
+    function myFunctionMoney() {
+        var elementDate = document.getElementById("shortDate");
+        var elementMoney = document.getElementById("shortMoney");
+        elementMoney.classList.add("active");
+        elementDate.classList.remove("active");
+        $("#shortDatePage").hide();
+        $("#shortMoneyPage").show();
+    }
+</script>
+

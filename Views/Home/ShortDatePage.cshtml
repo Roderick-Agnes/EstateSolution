@@ -1,0 +1,60 @@
+﻿@using EstateSolution.Models;
+@{
+    Layout = null;
+}
+@helper Truncate(String str, int len)
+{
+    if (str.Length > len)
+    {
+        @str.Substring(0, len) <text> ... </text>
+
+    }
+    else
+    {
+        @str
+    }
+}
+<div class="col-md-12 " style="padding-left: 0; padding-right: 0;">
+    <div id="list-type" class="proerty-th">
+        @foreach (var item in Model)
+        {
+            <div id="item-list-data" class="col-sm-6 col-md-3 p0">
+                <div class="box-two proerty-item" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;border-radius:2%">
+                    <div class="item-thumb">
+                        <a href="@Url.Action("Detail", "Home", new { idBds = item.MABDS, state = 0 })"><img src="~/assets/img/img-data/@item.HINHANH" style="height:300px;width:auto;"></a>
+                    </div>
+
+                    <div class="item-entry overflow">
+                        <h5><a href="@Url.Action("Detail", "Home", new { idBds = item.MABDS, state = 0 })" style="font-family:'Times New Roman', Times, serif;font-weight:100"> @Truncate(@item.TENBDS, 30) </a></h5>
+                        <div class="dot-hr"></div>
+                        <span class="pull-left"><b> Ngày đăng:</b> @Html.FormatValue(item.NGAYDANG, "{0:dd/MM/yyyy}") </span>
+                        <span class="proerty-price pull-right"> @item.GIA tỷ</span>
+                        <p style="display: none;">@Truncate(@item.THONGTIN, 119)</p>
+                        <div class="property-icon">
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        }
+    </div>
+</div>
+@*<div class="col-md-12">
+        <div class="pull-right">
+            @Html.PagedListPager(Model, page => Url.Action("ShortDatePage", new { page = page }))
+        </div>
+        <div class="pull-right">
+            <div class="pagination" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                <ul>
+                    <li><a href="#">Prev</a></li>
+                    <li><a href="#">1</a></li>
+                    <li><a href="#">2</a></li>
+                    <li><a href="#">3</a></li>
+                    <li><a href="#">4</a></li>
+                    <li><a href="#">Next</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>*@
+

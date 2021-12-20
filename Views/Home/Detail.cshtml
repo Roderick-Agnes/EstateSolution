@@ -1,0 +1,284 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/_LayoutDetail.cshtml";
+}
+@{
+    THANHVIEN tv = (THANHVIEN)Session["TAIKHOAN"];
+}
+@{
+    double TrungBinhDanhGia = 0;
+    if (ViewBag.SoLuongDanhGia != 0)
+    {
+        TrungBinhDanhGia = Math.Round((double)(1.0 * ViewBag.TongDanhGia * 10 / ViewBag.SoLuongDanhGia));
+    }
+
+    TrungBinhDanhGia /= 10;
+
+}
+<head>
+    <script>
+        function mp_onload() {
+            alert("window load complete");
+            var state = @Convert.ToInt32(Request.QueryString["state"]);
+            if (window.body_onload != null)
+            {
+                $(window).load(function () {
+                    $("#SuccessAlert").show();
+                });
+                
+            }
+        }
+        var state = @Convert.ToInt32(@ViewBag.STATE);
+        if (state === 1) {
+            function body_onload() {
+                $(window).load(function () {
+                    alert("window load complete");
+                });
+                $("#SuccessAlert").show();
+            }
+
+        }
+
+        if (state === 2) {
+            function body_onload() {
+                $(window).load(function () {
+                    alert("Lỗi");
+                });
+                $("#FailAlerts").show();
+            }
+
+        }
+        function hideAlert() {
+            $("#SuccessAlert").hide();
+        }
+        function hideAlertFails() {
+            $("#FailAlerts").hide();
+        }
+        function showAlert() {
+            $("#SuccessAlert").show();
+        }
+        function showFailAlerts() {
+            $("#FailAlerts").show();
+        }
+    </script>
+</head>
+<div class="page-head"  onload="mp_onload();">
+    <div class="container">
+        <div class="row">
+            <div class="page-head-content">
+                <h1 class="page-title">@ViewBag.TenLoaiBDS</h1>
+                <div id="SuccessAlert" class="container" style="position:absolute;top:0;margin-top:-3%;display:none">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" onclick="hideAlert()" id="btnOk" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title text-center" id="myModalLabel" style="color:#000"><i class="fa fa-check-circle" style="color:#0ac602;font-size:80px"></i><br>Đã thêm vào giỏ hàng <br></h4>
+                            </div>
+                            @*<div class="modal-body">
+                                    <a>This is the messages...</a>
+                                </div>*@
+                            <div class="modal-body text-right">
+                                @*<button ID="btnCancel" runat="server" class="btn btn-primary">Cancel</button>*@
+                                <button ID="btnOk" onclick="hideAlert()" runat="server" class="btn btn-primary">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="FailAlerts" class="container" style="position:absolute;top:0;margin-top:-3%;display:none">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" onclick="hideAlertFails()" id="btnOk" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title text-center" id="myModalLabel" style="color:#000;"><i class="fa fa-times-circle" style="color:red;font-size:80px"></i><br><span style="margin-top: 10px">Bất động sản đã tồn tại trong giỏ hàng</span> <br></h4>
+                            </div>
+                            @*<div class="modal-body">
+                                    <a>This is the messages...</a>
+                                </div>*@
+                            <div class="modal-body text-right">
+                                @*<button ID="btnCancel" runat="server" class="btn btn-primary">Cancel</button>*@
+                                <button ID="btnOk" onclick="hideAlertFails()" runat="server" class="btn btn-primary">Ok</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- End page header -->
+<!-- property area -->
+<div class="content-area single-property" style="background-color: #FCFCFC;">
+    &nbsp;
+    <div class="container">
+
+        <div class="clearfix padding-top-40">
+
+            <div class="col-md-8 single-property-content prp-style-1" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                <div class="row">
+                    @*<div class="light-slide-item">
+                        <div class="clearfix">*@
+                    <div class="favorite-and-print">
+                        <a class="printer-icon " href="javascript:window.print()">
+                            <i class="fa fa-print"></i>
+                        </a>
+                    </div>
+
+                    @Html.Action("ImagePage", "Home", new { id = Convert.ToInt32(@Model.MABDS) })
+                    @*</div>
+                        </div>*@
+                </div>
+
+                <div class="single-property-wrapper">
+                    <div class="single-property-header">
+                        <h3 class="pull-left s-property-content" style="font-family:'Times New Roman', Times, serif;font-weight:100">@Model.TENBDS</h3>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6" style="text-align: left">
+                            <h4>
+                                @{ int star = 0;}
+                                @for (; star < @Math.Floor((double)TrungBinhDanhGia); star++)
+                                {
+                                    <i class="fa fa-star" style="color: #FFD700;"></i>
+
+                                }
+                                @if (star < @Math.Ceiling((double)TrungBinhDanhGia))
+                                {
+                                    <i class="fa fa-star-half-full" style="color: #FFD700;"></i>
+                                    star++;
+                                }
+                                @for (; star < 5; star++)
+                                {
+                                    <span class="fa fa-star-o" style="color: #FFD700;"></span>
+                                }
+                            </h4>
+                        </div>
+                        <div class="col-md-6" style="text-align: right">
+                            @{int state = @Convert.ToInt32(Request.QueryString["state"]); }
+                                @if ( state == 1 || state == 2)
+                                {
+                                <button class="button btn btn-success container-fluid" onclick="showFailAlerts()" style="max-width:95%"><span style="color:#0ac602;font-size:25px"><i class="fa fa-check-circle" style="color:#0ac602;font-size:25px"></i> Đã thêm vào giỏ</span></button>
+                              }
+                             @if (@Convert.ToInt32(Request.QueryString["state"]) == 0 )
+                            {
+                                <a href="@Url.Action("ThemGioHang", "GioHang", new { ma = @Model.MABDS, url = Request.Url.ToString() })"><button id="themvaogio" class="button btn btn-primary container-fluid" onclick="showAlert()" style="max-width:95%"><span><i class="fa fa-shopping-cart"></i></span> Thêm vào giỏ</button></a>
+                            }
+                        </div>
+                    </div>
+
+                    <hr>
+                    @Html.Action("DacDiemPage", "Home", new { id = Model.MABDS })
+                    <div class="row">
+
+                        <div class="col-md-3">
+                            <div class="single-property-header" style="text-align: left">
+                                <h5 class="s-property-content" style="font-family:'Times New Roman', Times, serif">Mức giá </h5>
+                                <h3 class="property-price" style="border:none;margin-top: -10px; font-family: 'Times New Roman', Times, serif">@Model.GIA tỷ</h3>
+
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="single-property-header" style="text-align: left;">
+                                <h5 class="s-property-content" style="font-family:'Times New Roman', Times, serif">Đặt cọc trước </h5>
+                                <h3 class="property-price" style="border: none; margin-top: -10px; font-family: 'Times New Roman', Times, serif">@Model.COC_TRUOC%</h3>
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+
+                        </div>
+                        <div class="col-md-3"></div>
+                    </div>
+                    <!-- .property-meta -->
+                    <hr>
+                    <div class="section">
+                        <h4 class="s-property-title">Thông tin</h4>
+                        <div class="s-property-content">
+                            <p>@Html.Raw(@Model.THONGTIN.ToString().Replace("\n", "<p></p>"))</p>
+                        </div>
+                    </div>
+                    <!-- End description area  -->
+                    <!-- End additional-details area  -->
+
+                    <div class="section property-features">
+
+                        <h4 class="s-property-title">Xem thêm</h4>
+                        <ul>
+                            <li><a href="/Home/Loai_Bds_Page?maLoai=1" style="font-weight:bold">Nhà riêng</a></li>
+                            <li><a href="/Home/Loai_Bds_Page?maLoai=2" style="font-weight:bold">Căn hộ chung cư</a></li>
+                            <li><a href="/Home/Loai_Bds_Page?maLoai=3" style="font-weight:bold">Shophouse</a></li>
+                            <li><a href="/Home/Loai_Bds_Page?maLoai=4" style="font-weight:bold">Officetel</a></li>
+                        </ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div class="col-md-4 p0" style="box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px;">
+                <aside class="sidebar sidebar-property blog-asside-right">
+                    <div class="dealer-widget" style="background:#aeabab">
+                        <div class="dealer-content">
+                            <div class="inner-wrapper">
+                                @Html.Action("ChuSoHuu", "Home")
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Đánh giá bình luận</h3>
+                        </div>
+                        @Html.Action("ListBinhLuan", "Home", new { ma = Convert.ToInt32(@Model.MABDS) })
+                    </div>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" style="margin-top:35px;">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Bình luận ngay</h3>
+                        </div>
+
+
+                        @if (Session["TAIKHOAN"] == null)
+                        {
+                            <div class="form-group">
+                                <h3 class="panel-title">Vui lòng đăng nhập để sử dụng tính năng này</h3>
+                            </div>
+                            <div class="text-center">
+                                <a href="/User/LoginPage?id=6&&tb=@Model.MABDS"><button type="submit" class="btn-primary"> Đăng nhập</button></a>
+                            </div>
+                        }
+                        else
+                        {
+                            @Html.Action("BinhLuanPartial", "Home", new { ma = Convert.ToInt32(@Model.MABDS) })
+                        }
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Xem thêm</h3>
+                        </div>
+                        @Html.Action("XemThem", "Home")
+                    </div>
+
+                    <div class="panel panel-default sidebar-menu wow fadeInRight animated">
+                        @Html.Action("SearchRcm", "Search")
+                    </div>
+
+                </aside>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+

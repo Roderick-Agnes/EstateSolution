@@ -1,0 +1,30 @@
+﻿@using EstateSolution.Models;
+@{
+    Layout = null;
+}
+@*<div style="display: none;" class="search-toggle container">
+        <div class="search-row">
+            @{
+                int i = 0;
+            }
+            @foreach (var item in Model)
+            {
+                i++;
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input id=@i type="checkbox"> @item.TENLOAI
+                        </label>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>*@
+<div class="form-group">
+    <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Chọn loại bất động sản" name="typeBds">
+        @foreach (var item in Model)
+        {
+            <option>@item.TENLOAI</option>
+        }
+    </select>
+</div>

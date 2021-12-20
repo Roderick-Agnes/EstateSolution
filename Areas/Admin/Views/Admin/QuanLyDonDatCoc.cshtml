@@ -1,0 +1,119 @@
+﻿@using EstateSolution.Models
+@{
+    ViewBag.Title = "QuanLyDonDatCoc";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@helper Truncate(String s, int length)
+{
+    if (s.Length < length)
+    {
+        @s
+    }
+    else
+    {
+        @s.Substring(0, length) <text> ... </text>
+    }
+}
+@{
+    NHANVIEN tv = (NHANVIEN)Session["NHANVIEN"];
+}
+<main>
+    <div class="container-fluid px-4">
+        <h3 class="mt-4">QUẢN LÝ ĐƠN ĐẶT CỌC</h3>
+        <div class="mb-4" style="margin-top:1%">
+
+            <a href="@Url.Action("CreateDon","Admin")" class=" btn btn-success" role="button" style="color:white"><i class="fas fa-plus-circle"></i> Thêm mới đơn đặt cọc</a>
+        </div>
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table me-1"></i>
+                Bảng danh sách đơn đặt cọc
+            </div>
+            <div class="card-body">
+                <table id="datatablesSimple">
+                    <thead>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Tên bất động sản</th>
+                            @*<th>Loại</th>*@
+                            <th>Tên khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Tình trạng</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Mã đơn</th>
+                            <th>Tên bất động sản</th>
+                            @*<th>Loại</th>*@
+                            <th>Tên khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Tình trạng</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+
+                        @foreach (var i in Model)
+                        {
+                            if(i.MADON != 1 && i.STATE_DELETE != 0) { 
+                                <tr>
+                                    <td>@i.MADON</td>
+                                    <td>@Truncate(@i.BDS.TENBDS, 15)</td>
+                                    @*<td>@i.LOAIBDS.TENLOAI</td>*@
+                                    <td>@i.THANHVIEN.TENTHANHVIEN</td>
+                                    <td>@Html.FormatValue(@i.DONDATCOC.NGAYDAT, "{0:dd/MM/yyyy}")</td>
+                                    <td>@i.TONGTIEN tỷ ₫</td>
+                                    @if (i.TINHTRANG_THANHTOAN != 0)
+                                    {
+                                        <td><i class="fa fa-check-circle" style="color:#0ac602;font-size:15px;"></i> Đơn đặt cọc đã được xử lý</td>
+                                        <td><a href="@Url.Action("Status_ThanhToan", new { ma = @i.MADON })" class=" btn btn-success" role="button"><i class="fas fa-check-circle"></i> Đã thanh toán</a></td>
+                                        
+                                    }
+                                    else
+                                    {
+                                        <td><i class="fas fa-sync fa-spin" style="color:#0ac602;font-size:15px;"></i> Đang chờ xử lý...</td>
+                                        <td><a href="@Url.Action("Status_ThanhToan",new { ma = @i.MADON})" class=" btn btn-outline-info" role="button"><i class="fas fa-sync fa-spin"></i> Chờ thanh toán</a></td>
+                                        @*<td><a href="@Url.Action("EditDon",new { ma = @i.MADON})" class=" btn btn-warning" role="button" style="color:#fff"><i class="fas fa-edit"></i> Sửa</a></td>
+                                        <td><a href="@Url.Action("DetailDon", new{ ma = @i.MADON})" class=" btn btn-primary" role="button"><i class="fas fa-eye"></i> Chi tiết</a></td>
+                                        <td><a href="@Url.Action("DeleteDon", new{ ma = @i.MADON})" class=" btn btn-danger" role="button"><i class="fas fa-trash"></i> Xóa</a></td>
+                                        <td><a href="@Url.Action("ExportToWord", new { maDon = @i.MADON, maNv = tv.MANV })" class=" btn btn-success" role="button"><i class="fas fa-print"></i> In đơn</a></td>*@
+                                    }
+                                        <td><a href="@Url.Action("EditDon", new { ma = @i.MADON })" class=" btn btn-outline-warning" role="button"><i class="fas fa-edit"></i> Sửa</a></td>
+                                        <td><a href="@Url.Action("DetailDon", new { ma = @i.MADON })" class=" btn btn-outline-primary" role="button"><i class="fas fa-eye"></i> Chi tiết</a></td>
+                                        <td><a href="@Url.Action("DeleteDon", new { ma = @i.MADON })" class=" btn btn-outline-danger" role="button"><i class="fas fa-trash"></i> Xóa</a></td>
+                                        <td><a href="@Url.Action("ExportToWord", new { maDon = @i.MADON, maNv = tv.MANV })" class=" btn btn-outline-success" role="button"><i class="fas fa-print"></i> In đơn</a></td>
+
+
+                                </tr>   
+                            }
+                        }
+
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+
+
+
+
+
+
+
+
+

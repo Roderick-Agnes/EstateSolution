@@ -1,0 +1,55 @@
+﻿@using EstateSolution.Models
+@{ 
+    NHANVIEN nv = (NHANVIEN)Session["NHANVIEN"];
+}
+
+<div class="sb-sidenav-menu">
+
+    <div class="nav">
+        <div class="sb-sidenav-menu-heading">Core</div>
+        <a class="nav-link" href="/Admin/Admin/Index?month=@Convert.ToInt32(DateTime.Now.Month)">
+            <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+            Trang chủ
+        </a>
+        <div class="sb-sidenav-menu-heading">Interface</div>
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyBDS", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý bất động sản
+        </a>
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyLoaiBDS", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý loại
+        </a>
+        @if (nv.PHANQUYEN.CHUCVU.Equals("Admin"))
+        {
+            <a class="nav-link collapsed" href="@Url.Action("QuanLyNhanVien", "Admin")">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Quản lý nhân viên
+            </a>
+            <a class="nav-link collapsed" href="@Url.Action("QuanLyTaiKhoanQuanTri", "Admin")">
+                <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                Quản lý tài khoản
+            </a>
+        }
+        else if (nv.PHANQUYEN.CHUCVU.Equals("Nhân viên")){ 
+            
+        }
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyThanhVien", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý thành viên
+        </a>
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyDanhGia", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý đánh giá
+        </a>
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyDonDatCoc", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý đơn đặt cọc
+        </a>
+        <a class="nav-link collapsed" href="@Url.Action("QuanLyTinNhan", "Admin")">
+            <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+            Quản lý tin nhắn
+        </a>
+
+    </div>
+</div>

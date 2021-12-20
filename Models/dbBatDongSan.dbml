@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BATDONGSAN" Class="dbBatDongSanDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=LAPTOP-NH3L7KBS\SQLEXPRESS;Initial Catalog=BATDONGSAN;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="BATDONGSANConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.DACDIEM_BDS" Member="DACDIEM_BDS">
+    <Type Name="DACDIEM_BDS">
+      <Column Name="MADACDIEM_BDS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MABDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MALOAI_BDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIACHI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DIENTICH" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="SOPHONGNGU" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOPHONGTAM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SOGARA" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PHAPLY" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="BDS_DACDIEM_BDS" Member="BDS" ThisKey="MABDS" OtherKey="MABDS" Type="BDS" IsForeignKey="true" />
+      <Association Name="LOAIBDS_DACDIEM_BDS" Member="LOAIBDS" ThisKey="MALOAI_BDS" OtherKey="MALOAI" Type="LOAIBDS" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HINH_ANH_BDS" Member="HINH_ANH_BDS">
+    <Type Name="HINH_ANH_BDS">
+      <Column Name="MA_HINHANH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MABDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Association Name="BDS_HINH_ANH_BDS" Member="BDS" ThisKey="MABDS" OtherKey="MABDS" Type="BDS" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHANQUYEN" Member="PHANQUYENs">
+    <Type Name="PHANQUYEN">
+      <Column Name="MAPQ" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="CHUCVU" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Association Name="PHANQUYEN_NHANVIEN" Member="NHANVIENs" ThisKey="MAPQ" OtherKey="MAPQ" Type="NHANVIEN" />
+    </Type>
+  </Table>
+  <Table Name="dbo.REPLY_TINNHAN_MAIL" Member="REPLY_TINNHAN_MAILs">
+    <Type Name="REPLY_TINNHAN_MAIL">
+      <Column Name="MA_REPLY_MAIL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MATINNHAN" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TIEUDE" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTRALOI" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Association Name="TINNHAN_MAIL_REPLY_TINNHAN_MAIL" Member="TINNHAN_MAIL" ThisKey="MATINNHAN" OtherKey="MATINNHAN" Type="TINNHAN_MAIL" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TINNHAN_MAIL" Member="TINNHAN_MAILs">
+    <Type Name="TINNHAN_MAIL">
+      <Column Name="MATINNHAN" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TIEUDE" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(2000) NOT NULL" CanBeNull="false" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYNHAN" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="TINHTRANG_PHANHOI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="TINNHAN_MAIL_REPLY_TINNHAN_MAIL" Member="REPLY_TINNHAN_MAILs" ThisKey="MATINNHAN" OtherKey="MATINNHAN" Type="REPLY_TINNHAN_MAIL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.NHANVIEN" Member="NHANVIENs">
+    <Type Name="NHANVIEN">
+      <Column Name="MANV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="CHUCVU" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="GIOITINH" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DIENTHOAI" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="LINK_FACEBOOK" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="TAIKHOAN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MATKHAU" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MAPQ" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="NHANVIEN_ADMIN_REPLY" Member="ADMIN_REPLies" ThisKey="MANV" OtherKey="MANV" Type="ADMIN_REPLY" />
+      <Association Name="NHANVIEN_BDS" Member="BDS" ThisKey="MANV" OtherKey="MA_AD_DUYET" Type="BDS" />
+      <Association Name="PHANQUYEN_NHANVIEN" Member="PHANQUYEN" ThisKey="MAPQ" OtherKey="MAPQ" Type="PHANQUYEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DONDATCOC" Member="DONDATCOCs">
+    <Type Name="DONDATCOC">
+      <Column Name="MADON" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="NGAYDAT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="NGAYHT" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="DUYET" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="DONDATCOC_CHITIETDONDATCOC" Member="CHITIETDONDATCOCs" ThisKey="MADON" OtherKey="MADON" Type="CHITIETDONDATCOC" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ADMIN_REPLY" Member="ADMIN_REPLies">
+    <Type Name="ADMIN_REPLY">
+      <Column Name="MAREPLY" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MABL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MABDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MANV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYTRALOI" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Association Name="NHANVIEN_ADMIN_REPLY" Member="NHANVIEN" ThisKey="MANV" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="BDS_ADMIN_REPLY" Member="BDS" ThisKey="MABDS" OtherKey="MABDS" Type="BDS" IsForeignKey="true" />
+      <Association Name="BINHLUANDANHGIA_ADMIN_REPLY" Member="BINHLUANDANHGIA" ThisKey="MABL" OtherKey="MABL" Type="BINHLUANDANHGIA" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BDS" Member="BDS">
+    <Type Name="BDS">
+      <Column Name="MABDS" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MALOAI_BDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TENBDS" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="THONGTIN" Type="System.String" DbType="NVarChar(1500) NOT NULL" CanBeNull="false" />
+      <Column Name="GIA" Type="System.Decimal" DbType="Decimal(10,2) NOT NULL" CanBeNull="false" />
+      <Column Name="COC_TRUOC" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MA_AD_DUYET" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYDANG" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="DUYET" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SAO" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HINHANH" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="MATV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="STATE_DELETE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BDS_DACDIEM_BDS" Member="DACDIEM_BDS" ThisKey="MABDS" OtherKey="MABDS" Type="DACDIEM_BDS" />
+      <Association Name="BDS_HINH_ANH_BDS" Member="HINH_ANH_BDS" ThisKey="MABDS" OtherKey="MABDS" Type="HINH_ANH_BDS" />
+      <Association Name="BDS_ADMIN_REPLY" Member="ADMIN_REPLies" ThisKey="MABDS" OtherKey="MABDS" Type="ADMIN_REPLY" />
+      <Association Name="BDS_CHITIETDONDATCOC" Member="CHITIETDONDATCOCs" ThisKey="MABDS" OtherKey="MABDS" Type="CHITIETDONDATCOC" />
+      <Association Name="BDS_BINHLUANDANHGIA" Member="BINHLUANDANHGIAs" ThisKey="MABDS" OtherKey="MABDS" Type="BINHLUANDANHGIA" />
+      <Association Name="NHANVIEN_BDS" Member="NHANVIEN" ThisKey="MA_AD_DUYET" OtherKey="MANV" Type="NHANVIEN" IsForeignKey="true" />
+      <Association Name="LOAIBDS_BDS" Member="LOAIBDS" ThisKey="MALOAI_BDS" OtherKey="MALOAI" Type="LOAIBDS" IsForeignKey="true" />
+      <Association Name="THANHVIEN_BDS" Member="THANHVIEN" ThisKey="MATV" OtherKey="MATV" Type="THANHVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CHITIETDONDATCOC" Member="CHITIETDONDATCOCs">
+    <Type Name="CHITIETDONDATCOC">
+      <Column Name="MACT" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MADON" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MATV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MABDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TONGTIEN" Type="System.Decimal" DbType="Decimal(10,2)" CanBeNull="true" />
+      <Column Name="TINHTRANG_THANHTOAN" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="STATE_DELETE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BDS_CHITIETDONDATCOC" Member="BDS" ThisKey="MABDS" OtherKey="MABDS" Type="BDS" IsForeignKey="true" />
+      <Association Name="DONDATCOC_CHITIETDONDATCOC" Member="DONDATCOC" ThisKey="MADON" OtherKey="MADON" Type="DONDATCOC" IsForeignKey="true" />
+      <Association Name="LOAIBDS_CHITIETDONDATCOC" Member="LOAIBDS" ThisKey="MALOAI" OtherKey="MALOAI" Type="LOAIBDS" IsForeignKey="true" />
+      <Association Name="THANHVIEN_CHITIETDONDATCOC" Member="THANHVIEN" ThisKey="MATV" OtherKey="MATV" Type="THANHVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.LOAIBDS" Member="LOAIBDS">
+    <Type Name="LOAIBDS">
+      <Column Name="MALOAI" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENLOAI" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="STATUS_DELETE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="LOAIBDS_DACDIEM_BDS" Member="DACDIEM_BDS" ThisKey="MALOAI" OtherKey="MALOAI_BDS" Type="DACDIEM_BDS" />
+      <Association Name="LOAIBDS_BDS" Member="BDS" ThisKey="MALOAI" OtherKey="MALOAI_BDS" Type="BDS" />
+      <Association Name="LOAIBDS_CHITIETDONDATCOC" Member="CHITIETDONDATCOCs" ThisKey="MALOAI" OtherKey="MALOAI" Type="CHITIETDONDATCOC" />
+    </Type>
+  </Table>
+  <Table Name="dbo.BINHLUANDANHGIA" Member="BINHLUANDANHGIAs">
+    <Type Name="BINHLUANDANHGIA">
+      <Column Name="MABL" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MABDS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MATV" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HOTEN" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="SOSAO" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="NOIDUNG" Type="System.String" DbType="NVarChar(1000)" CanBeNull="true" />
+      <Column Name="NGAYBL" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="STATUS_DELETE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="BINHLUANDANHGIA_ADMIN_REPLY" Member="ADMIN_REPLies" ThisKey="MABL" OtherKey="MABL" Type="ADMIN_REPLY" />
+      <Association Name="BDS_BINHLUANDANHGIA" Member="BDS" ThisKey="MABDS" OtherKey="MABDS" Type="BDS" IsForeignKey="true" />
+      <Association Name="THANHVIEN_BINHLUANDANHGIA" Member="THANHVIEN" ThisKey="MATV" OtherKey="MATV" Type="THANHVIEN" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.THANHVIEN" Member="THANHVIENs">
+    <Type Name="THANHVIEN">
+      <Column Name="MATV" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="TENTHANHVIEN" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="GIOITINH" Type="System.String" DbType="NVarChar(6) NOT NULL" CanBeNull="false" />
+      <Column Name="DIACHI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="EMAIL" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="DIENTHOAI" Type="System.String" DbType="VarChar(12)" CanBeNull="true" />
+      <Column Name="NGAYDKTK" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="TAIKHOAN" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="MATKHAU" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="LINK_FACEBOOK" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="ANH_DAI_DIEN" Type="System.String" DbType="VarChar(255)" CanBeNull="true" />
+      <Column Name="STATUS_DELETE" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="THANHVIEN_BDS" Member="BDS" ThisKey="MATV" OtherKey="MATV" Type="BDS" />
+      <Association Name="THANHVIEN_CHITIETDONDATCOC" Member="CHITIETDONDATCOCs" ThisKey="MATV" OtherKey="MATV" Type="CHITIETDONDATCOC" />
+      <Association Name="THANHVIEN_BINHLUANDANHGIA" Member="BINHLUANDANHGIAs" ThisKey="MATV" OtherKey="MATV" Type="BINHLUANDANHGIA" />
+    </Type>
+  </Table>
+</Database>

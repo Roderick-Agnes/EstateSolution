@@ -1,0 +1,33 @@
+﻿@using EstateSolution.Models
+@{
+    NHANVIEN qt = (NHANVIEN)Session["NHANVIEN"];
+}
+@if (Session["NHANVIEN"] != null)
+{
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color:#fff;font-family:'Times New Roman', Times, serif">
+                <i class="fas fa-user-circle"></i> @qt.HOTEN
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item"><i class="fas fa-user-circle"></i> Chức vụ: @qt.CHUCVU</a></li>
+                <li><a class="dropdown-item" href="@Url.Action("DoiMatKhau", "Admin", new { id = @qt.MANV})"><i class="fas fa-edit"></i> Đổi mật khẩu</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li><a class="dropdown-item" href="@Url.Action("Logout", "Admin")"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Đăng xuất</a></li>
+            </ul>
+        </li>
+    </ul>
+}
+else
+{
+    <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <li><a class="dropdown-item" href="@Url.Action("Login", "Admin")"><i class="fa fa-angle-double-right" aria-hidden="true"></i> Chưa đăng nhập</a></li>
+
+            </ul>
+        </li>
+    </ul>
+}
+

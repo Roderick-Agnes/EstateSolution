@@ -1,0 +1,49 @@
+﻿@using EstateSolution.Models
+@{
+    Layout = null;
+}
+
+
+<div class="clear">
+    <div class="col-xs-4 col-sm-4 dealer-face">
+        <a href="">
+            @*<img src="~/assets/Upload-Anh-Dai-Dien/@Model.ANH_DAI_DIEN" class="img-circle" style="margin-top:20%">*@
+            <img src="~/assets/Upload-Anh-Dai-Dien/@Model.ANH_DAI_DIEN" class="img-circle" style="margin-top:20%">
+        </a>
+    </div>
+    <div class="col-xs-8 col-sm-8 ">
+        <h2 class="dealer-name">
+            <small style="color:#fff">@Model.TENTHANHVIEN</small><br>
+        </h2>
+        <h4><span style="color:#c7c7c7">Trung Nhân Estate</span></h4>
+        <div class="dealer-social-media">
+            <a class="twitter" target="_blank" href="">
+                <i class="fa fa-twitter"></i>
+            </a>
+            <a class="facebook" target="_blank" href="@Model.LINK_FACEBOOK">
+                <i class="fa fa-facebook"></i>
+            </a>
+            <a class="gplus" target="_blank" href="">
+                <i class="fa fa-google-plus"></i>
+            </a>
+            <a class="linkedin" target="_blank" href="">
+                <i class="fa fa-linkedin"></i>
+            </a>
+            <a class="instagram" target="_blank" href="">
+                <i class="fa fa-instagram"></i>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+<div class="clear">
+
+    <ul class="dealer-contacts">
+        <li>Thông tin liên hệ</li>
+        <li><i class="pe-7s-map-marker strong"> </i> @Model.DIACHI</li>
+        <li><i class="pe-7s-mail strong"> </i> @Model.EMAIL</li>
+        <li><i class="pe-7s-call strong"> </i> +@Model.DIENTHOAI</li>
+    </ul>
+
+</div>
