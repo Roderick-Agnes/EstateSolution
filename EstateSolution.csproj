@@ -189,10 +189,6 @@
     <Content Include="Areas\Admin\assets\images-old\auth\logo-dark.png" />
     <Content Include="Areas\Admin\assets\images-old\auth\Logo-small-bottom.png" />
     <Content Include="Areas\Admin\assets\images-old\auth\logo.png" />
-    <Content Include="Areas\Admin\assets\images-old\avatar-1.jpg" />
-    <Content Include="Areas\Admin\assets\images-old\avatar-2.jpg" />
-    <Content Include="Areas\Admin\assets\images-old\avatar-3.jpg" />
-    <Content Include="Areas\Admin\assets\images-old\avatar-4.jpg" />
     <Content Include="Areas\Admin\assets\images-old\bg.jpg" />
     <Content Include="Areas\Admin\assets\images-old\favicon.ico" />
     <Content Include="Areas\Admin\assets\images-old\flags\ENGLISH.jpg" />
@@ -207,14 +203,10 @@
     <Content Include="Areas\Admin\assets\images-old\mega-menu\05.jpg" />
     <Content Include="Areas\Admin\assets\images-old\mega-menu\06.jpg" />
     <Content Include="Areas\Admin\assets\images-old\pattern2.jpg" />
-    <Content Include="Areas\Admin\assets\images-old\user.png" />
     <Content Include="Areas\Admin\assets\images\auth\logo-dark.png" />
     <Content Include="Areas\Admin\assets\images\auth\Logo-small-bottom.png" />
     <Content Include="Areas\Admin\assets\images\auth\logo.png" />
     <Content Include="Areas\Admin\assets\images\avatar-1.jpg" />
-    <Content Include="Areas\Admin\assets\images\avatar-2.jpg" />
-    <Content Include="Areas\Admin\assets\images\avatar-3.jpg" />
-    <Content Include="Areas\Admin\assets\images\avatar-4.jpg" />
     <Content Include="Areas\Admin\assets\images\bg.jpg" />
     <Content Include="Areas\Admin\assets\images\blog\blog-r-1.jpg" />
     <Content Include="Areas\Admin\assets\images\blog\blog-r-2.jpg" />
@@ -234,42 +226,10 @@
     <Content Include="Areas\Admin\assets\images\pattern7.jpg" />
     <Content Include="Areas\Admin\assets\images\pattern8.jpg" />
     <Content Include="Areas\Admin\assets\images\pattern9.jpg" />
-    <Content Include="Areas\Admin\assets\images\product\prod1.jpg" />
-    <Content Include="Areas\Admin\assets\images\product\prod2.jpg" />
-    <Content Include="Areas\Admin\assets\images\product\prod3.jpg" />
-    <Content Include="Areas\Admin\assets\images\product\prod4.jpg" />
     <Content Include="Areas\Admin\assets\images\select-arrow.png" />
     <Content Include="Areas\Admin\assets\images\slider-full %282%29.jpg" />
     <Content Include="Areas\Admin\assets\images\slider-full %284%29.jpg" />
     <Content Include="Areas\Admin\assets\images\user.png" />
-    <Content Include="Areas\Admin\assets\images\widget\Group-user.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\icon-1.png" />
-    <Content Include="Areas\Admin\assets\images\widget\icon-2.png" />
-    <Content Include="Areas\Admin\assets\images\widget\icon-3.png" />
-    <Content Include="Areas\Admin\assets\images\widget\icon-4.png" />
-    <Content Include="Areas\Admin\assets\images\widget\map-bg.png" />
-    <Content Include="Areas\Admin\assets\images\widget\mountain.png" />
-    <Content Include="Areas\Admin\assets\images\widget\prod.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\prod1.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\prod2.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\prod3.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\prod4.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\profile-person1.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\proticketbg.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\seoimg1.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\seoimg2.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\seoimg3.jpg" />
-    <Content Include="Areas\Admin\assets\images\widget\sparcle-1.png" />
-    <Content Include="Areas\Admin\assets\images\widget\sparcle-2.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user-1.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user-2.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user-3.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user-4.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user-blur-bg.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user1.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user2.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user3.png" />
-    <Content Include="Areas\Admin\assets\images\widget\user4.png" />
     <Content Include="Areas\Admin\assets\js\bootstrap-growl.min.js" />
     <Content Include="Areas\Admin\assets\js\bootstrap\js\bootstrap.min.js" />
     <Content Include="Areas\Admin\assets\js\chart.js\Chart.js" />
@@ -520,19 +480,7 @@
     <Content Include="assets\img\client-face2.png" />
     <Content Include="assets\img\controls.png" />
     <Content Include="assets\img\default-property.jpg" />
-    <Content Include="assets\img\demo\property-1.jpg" />
-    <Content Include="assets\img\demo\property-2.jpg" />
-    <Content Include="assets\img\demo\property-3.jpg" />
-    <Content Include="assets\img\demo\property-4.jpg" />
-    <Content Include="assets\img\demo\property-5.jpg" />
-    <Content Include="assets\img\demo\property-6.jpg" />
-    <Content Include="assets\img\demo\small-proerty-2.jpg" />
-    <Content Include="assets\img\demo\small-property-1.jpg" />
-    <Content Include="assets\img\demo\small-property-2.jpg" />
-    <Content Include="assets\img\demo\small-property-3.jpg" />
     <Content Include="assets\img\dsdsds33 - Copy.png" />
-    <Content Include="assets\img\footer-logo-2.png" />
-    <Content Include="assets\img\footer-logo.png" />
     <Content Include="assets\img\icon-shearch.png" />
     <Content Include="assets\img\icon\bed-orange.png" />
     <Content Include="assets\img\icon\bed.png" />
@@ -584,7 +532,6 @@
     <Content Include="assets\img\img-data\Officetel2.jpeg" />
     <Content Include="assets\img\img-data\Officetel3.jpeg" />
     <Content Include="assets\img\img-data\Officetel4.jpeg" />
-    <Content Include="assets\img\img-data\Picture1.png" />
     <Content Include="assets\img\img-data\Shophouse1.jpg" />
     <Content Include="assets\img\img-data\Shophouse2.jpg" />
     <Content Include="assets\img\img-data\Shophouse3.jpg" />
@@ -592,15 +539,8 @@
     <Content Include="assets\img\page-header.jpg" />
     <Content Include="assets\img\preloader.gif" />
     <Content Include="assets\img\pro-ads.jpg" />
-    <Content Include="assets\img\property-1\property1.jpg" />
-    <Content Include="assets\img\property-1\property2.jpg" />
-    <Content Include="assets\img\property-1\property3.jpg" />
-    <Content Include="assets\img\property-1\property4.jpg" />
     <Content Include="assets\img\property-video.jpg" />
     <Content Include="assets\img\shopping-bag.png" />
-    <Content Include="assets\img\similar\property-1.jpg" />
-    <Content Include="assets\img\similar\property-2.jpg" />
-    <Content Include="assets\img\similar\property-3.jpg" />
     <Content Include="assets\img\skin\aero%402x.png" />
     <Content Include="assets\img\skin\aero.png" />
     <Content Include="assets\img\skin\blue%402x.png" />
@@ -1007,6 +947,7 @@
     <Content Include="Areas\Admin\Views\Admin\Menu.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\ListDonPartial.cshtml" />
     <Content Include="Areas\Admin\Views\Admin\EditDon.cshtml" />
+    <Content Include="FileBaoCao\File báo cáo tiểu luận.docx" />
     <None Include="Models\dbBatDongSan.dbml.layout">
       <DependentUpon>dbBatDongSan.dbml</DependentUpon>
     </None>
@@ -1147,8 +1088,13 @@
     <Content Include="Views\Home\ReplyCuaAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Areas\Admin\assets\images\product\" />
+    <Folder Include="Areas\Admin\assets\images\widget\" />
     <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="assets\img\demo\" />
     <Folder Include="assets\img\img-contact\" />
+    <Folder Include="assets\img\property-1\" />
+    <Folder Include="assets\img\similar\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
