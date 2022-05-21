@@ -1,0 +1,80 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "DetailNv";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyNhanVien", "QuanLyNhanVien")"><button class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    <h3 style="margin-left:1.5%">Thông tin nhân viên</h3>
+    <div class="form-horizontal container-fluid" style="padding-top:1%">
+        <div class="form-group container-fluid">
+            Mã nhân viên
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.MANV" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Họ và tên
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.HOTEN" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Giới tính
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.GIOITINH" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Địa chỉ
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.DIACHI" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Email
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.EMAIL" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Điện thoại
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.DIENTHOAI" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Facebook
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.FACEBOOK" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Chức vụ
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.CHUCVU" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Tài khoản
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.TAIKHOAN" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Mật khẩu
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.MATKHAU" />
+            </div>
+        </div>
+
+
+
+        <br />
+        
+
+    </div>
+
+</div>

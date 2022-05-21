@@ -1,0 +1,34 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "EditLoaiBds";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyLoaiBDS", "QuanLyLoaiBatDongSan")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+@using (Html.BeginForm("EditLoaiBds", "QuanLyLoaiBatDongSan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+        <h3 style="margin-left:1.5%">Chỉnh sửa loại bất động sản</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            <div class="form-group container-fluid">
+                Tên loại bất động sản
+                <div class="col-md-10">
+                    <input type="hidden" name="MALOAI" class="form-control" value="@ViewBag.MALOAI" />
+                    <input id="name" type="text" name="TENLOAI" class="form-control" value="@ViewBag.TENLOAI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTENLOAI</small>
+            </div>
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input id="save" type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+

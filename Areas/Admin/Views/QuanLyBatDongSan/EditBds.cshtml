@@ -1,0 +1,194 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "EditBds";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+
+}
+@{
+    NHANVIEN tv = (NHANVIEN)Session["NHANVIEN"];
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyBDS", "QuanLyBatDongSan")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+@*<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">*@
+@using (Html.BeginForm("EditBds", "QuanLyBatDongSan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    int i = 0;
+    double TrungBinhDanhGia = 0;
+    if (@ViewBag.SoLuongDanhGia != 0)
+    {
+        TrungBinhDanhGia = Math.Round((double)(1.0 * Convert.ToDouble(@ViewBag.TongDanhGia) * 10 / Convert.ToDouble(@ViewBag.SoLuongDanhGia)));
+    }
+    TrungBinhDanhGia /= 10;
+    <div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+        <h3 style="margin-left:1.5%">Chỉnh sửa bất động sản</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            <div class="form-group container-fluid">
+                Chọn loại bất động sản:
+                <div class="col-md-12">
+                    @Html.DropDownList("MALOAI", null, new { @id = "loaibds", @class = "form-control" })
+                    <input type="hidden" name="MABDS" class="form-control" value="@ViewBag.MABDS" />
+                    <input type="hidden" name="MANV" class="form-control" value="@tv.MANV" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Tên bất động sản
+                <div class="col-md-12">
+                    <input id="name" type="text" name="TENBDS" class="form-control" value="@ViewBag.TENBDS" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTENBDS</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Thông tin
+                <div class="col-md-12">
+                    <textarea id="tt" class="form-control" name="THONGTIN" style="height:200px;">@Html.Raw(@ViewBag.THONGTIN.ToString().Replace("\n", ""))</textarea>
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTHONGTIN</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Mức giá(<span style="color:red;text-align:right">Đơn vị: Tỷ đồng</span>)
+                <div class="col-md-12">
+                    <input id="mucgia" type="number" name="GIA" class="form-control" value="@ViewBag.GIA" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorGIA</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Số phần trăm yêu cầu cọc trước(<span style="color:red;text-align:right">Đơn vị: %</span>)
+                <div class="col-md-12">
+                    <input id="phantram" type="number" name="COCTRUOC" class="form-control" value="@ViewBag.COC_TRUOC" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorCOCTRUOC</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Nhân viên duyệt
+                <div class="col-md-12">
+                    <input id="nv" type="text" name="NHAVIENDUYET" class="form-control" value="@ViewBag.NHANVIENDUYET" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Ngày đăng
+                <div class="col-md-12">
+                    <input id="ngaydang" type="text" name="NGAYDANG" class="form-control" value="@Html.FormatValue(@ViewBag.NGAYDANG, "{0:dd/MM/yyyy}")" />
+                </div>
+            </div>
+
+            <div class="form-group container-fluid">
+                Người đăng
+                <div class="col-md-12">
+                    <input id="nguoidang" type="text" name="NGUOIDANG" class="form-control" value="@ViewBag.NGUOIDANG" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Địa chỉ
+                <div class="col-md-12">
+                    <input id="diachi" type="text" name="DIACHI" class="form-control" value="@ViewBag.DIACHI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIACHI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số sao
+                <div class="col-md-12">
+                    <h4 class="form-control">
+                        @{ int star = 0;}
+                        @for (; star < @Math.Floor((double)TrungBinhDanhGia); star++)
+                        {
+                            <img src="~/Areas/Admin/src/img/icon_star.png" width="25" height="auto" style="color: #FFD700;" />
+
+                        }
+                        @if (star < @Math.Ceiling((double)TrungBinhDanhGia))
+                        {
+                            <img src="~/Areas/Admin/src/img/icon-star-half.png" width="25" height="auto" style="color: #FFD700;" />
+                            @*<i class="fa fa-star-half-full" style="color: #FFD700;"></i>*@
+                            star++;
+                        }
+                        @for (; star < 5; star++)
+                        {
+                            <img src="~/Areas/Admin/src/img/icon-star-o.png" width="25" height="auto" style="color: #FFD700;" />
+                            @*<span class="fa fa-star-o" style="color: #FFD700;"></span>*@
+                        }
+                    </h4>
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Diện tích
+                <div class="col-md-12">
+                    <input id="dientich" type="text" name="DIENTICH" class="form-control" value="@ViewBag.DIENTICH" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIENTICH</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số phòng ngủ
+                <div class="col-md-12">
+                    <input id="sophongngu" type="number" name="SOPHONGNGU" class="form-control" value="@ViewBag.SOPHONGNGU" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOPHONGNGU</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số phòng tắm
+                <div class="col-md-12">
+                    <input id="sophongtam" type="number" name="SOPHONGTAM" class="form-control" value="@ViewBag.SOPHONGTAM" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOPHONGTAM</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số gara
+                <div class="col-md-12">
+                    <input id="sogara" type="number" name="SOGARA" class="form-control" value="@ViewBag.SOGARA" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOGARA</small>
+            </div>
+            <div class="form-group container-fluid">
+                Pháp lý
+                <div class="col-md-12">
+                    <input id="phaply" type="text" name="PHAPLY" class="form-control" value="@ViewBag.PHAPLY" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorPHAPLY</small>
+            </div>
+            <!--<div class="form-group container-fluid">
+        Tình trạng duyệt
+        <div class="col-md-12">-->
+            @*<input type="text" name="TINHTRANGDUYET" class="form-control" value="@ViewBag.TINHTRANGDUYET" />*@
+            <!--Html.DropDownList("TINHTRANGDUYET", null, new { class = "form-control" })
+        </div>
+    </div>-->
+            @Html.Action("DetailBdsImage", "QuanLyBatDongSan", new { ma = Convert.ToInt32(@ViewBag.MABDS) })
+            <div class="form-group container-fluid">
+                Thay mới ảnh 1
+                <div class="col-md-12">
+                    <input id="avatar1" type="file" name="fileUploadNew" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Thay mới ảnh 2
+                <div class="col-md-12">
+                    <input id="avatar2" type="file" name="fileUploadNew2" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Thay mới ảnh 3
+                <div class="col-md-12">
+                    <input id="avatar3" type="file" name="fileUploadNew3" class="form-control" />
+                </div>
+            </div>
+            
+
+
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input id="save" type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+
+

@@ -27,7 +27,7 @@ CREATE TABLE NHANVIEN
 	CHUCVU NVARCHAR(50) NOT NULL,
 	GIOITINH NVARCHAR(6) CHECK (GIOITINH IN('Male','Female','Unk')) NOT NULL,
 	DIACHI NVARCHAR(50),
-	EMAIL VARCHAR(50),
+	EMAIL VARCHAR(50),	
 	DIENTHOAI VARCHAR(12),
 	LINK_FACEBOOK VARCHAR(255),
 	TAIKHOAN VARCHAR(50),
@@ -37,21 +37,21 @@ CREATE TABLE NHANVIEN
 GO
 INSERT INTO NHANVIEN
 VALUES
-(N'Chưa được duyệt', N'Admin', 'Female','', '', 0987934364, '',N'null',123,1),
-(N'Lã Thị Phương Thảo', N'Admin', N'Female',N'154 Trần Đình Xu, quận 1, tp.HCM', N'pt0987934364@mail.com', 0987934364, '',N'Thao',123,1),
-(N'Mai Chấn Cường', N'Admin', N'Male',N'205/14 Quang Trung, quận 3, tp HCM', N'cuong123@gmail.com', 0957553437, '',N'Cuong',456,1),
-(N'Cao Thành Nhơn', N'Admin', N'Male',N'28 Nguyễn Huệ, quận 3, tp HCM', N'nhon123@mail.com', 0947553427, '',N'Nhon',789,1)
+(N'Chưa được duyệt', N'Admin', 'Female','', '', 0987934364, '',N'null', 'e10adc3949ba59abbe56e057f20f883e',1),
+(N'Lã Thị Phương Thảo', N'Admin', N'Female',N'154 Trần Đình Xu, quận 1, tp.HCM', N'pt0987934364@mail.com', 0987934364, '',N'Thao','e10adc3949ba59abbe56e057f20f883e',1),
+(N'Mai Chấn Cường', N'Admin', N'Male',N'205/14 Quang Trung, quận 3, tp HCM', N'cuong123@gmail.com', 0957553437, '',N'Cuong','e10adc3949ba59abbe56e057f20f883e',1),
+(N'Cao Thành Nhơn', N'Admin', N'Male',N'28 Nguyễn Huệ, quận 3, tp HCM', N'nhon123@mail.com', 0947553427, '',N'Nhon','e10adc3949ba59abbe56e057f20f883e',1)
 GO
 
 
-CREATE TABLE THANHVIEN                         --KHÁCH HÀNG ĐĂNG KÝ TÀI KHOẢN
+CREATE TABLE THANHVIEN									 --KHÁCH HÀNG ĐĂNG KÝ TÀI KHOẢN
 (
 	MATV INT PRIMARY KEY IDENTITY NOT NULL,
 	TENTHANHVIEN NVARCHAR(50),
 	GIOITINH  NVARCHAR(6) CHECK (GIOITINH IN('Nam',N'Nữ','Unk')) NOT NULL,
 	DIACHI NVARCHAR(50),
 	EMAIL VARCHAR(50),
-	DIENTHOAI VARCHAR(12),
+	DIENTHOAI VARCHAR(11),
 	NGAYDKTK DATE DEFAULT GETDATE() NOT NULL,            --NGÀY ĐĂNG KÝ TÀI KHOẢN
 	TAIKHOAN VARCHAR(50),
 	MATKHAU VARCHAR(50),
@@ -62,9 +62,9 @@ CREATE TABLE THANHVIEN                         --KHÁCH HÀNG ĐĂNG KÝ TÀI KH
 GO
 INSERT INTO THANHVIEN 
 VALUES
-(N'Cao Ngọc Nhi', N'Nữ', N' 132/12 Cầu Giấy, Hà Nội', N'ngocnhi1207@gmail.com', '08364524372', '11-05-2021', N'Nhi', 1234,'', '',1),
-(N'Mai Chấn Cường', N'Nam', N' Vũng Tàu', N'm.contactqc@gmail.com', '0382071075', '12-16-2021', N'Cuong', 123,'https://www.facebook.com/mcc1612/','cuong.png',1),
-(N'Nguyễn Xuân Anh', N'Nam', N' 28 Trường Chinh, quận 3, tp HCM', N'xanh2341@gmail.com', '0957473527', '11-15-2021', N'Anh', 4567,'','',1)
+(N'Cao Ngọc Nhi', N'Nữ', N' 132/12 Cầu Giấy, Hà Nội', N'ngocnhi1207@gmail.com', '08364524372', '11-05-2021', N'Nhi', 'e10adc3949ba59abbe56e057f20f883e','', '',1),
+(N'Mai Chấn Cường', N'Nam', N' Vũng Tàu', N'm.contactqc@gmail.com', '0382071075', '12-16-2021', N'Cuong', 'e10adc3949ba59abbe56e057f20f883e','https://www.facebook.com/mcc1612/','cuong.png',1),
+(N'Nguyễn Xuân Anh', N'Nam', N' 28 Trường Chinh, quận 3, tp HCM', N'xanh2341@gmail.com', '0957473527', '11-15-2021', N'Anh', 'e10adc3949ba59abbe56e057f20f883e','','',1)
 GO
 ----------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------

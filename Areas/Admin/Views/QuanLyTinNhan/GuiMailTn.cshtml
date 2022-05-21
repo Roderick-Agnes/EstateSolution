@@ -1,0 +1,54 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "GuiMailTn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyTinNhan", "QuanLyTinNhan")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+@using (Html.BeginForm("GuiMailTn", "QuanLyTinNhan", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+        <h3 style="margin-left:1.5%">Gửi tin nhắn đến Email của khách hàng</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            <div class="form-group container-fluid">
+                Họ và tên
+                <div class="col-md-12">
+                    <input type="hidden" name="MATN" class="form-control" value="@ViewBag.MATN" readonly />
+                    <input id="name" type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" readonly />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Gửi đến
+                <div class="col-md-12">
+                    <input id="email" type="text" name="EMAIL" class="form-control" value="@ViewBag.EMAIL"/>
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Tiêu đề
+                <div class="col-md-12">
+                    <input id="tittle" type="text" name="TIEUDE" class="form-control" value="@ViewBag.TIEUDE " />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTIEUDE</small>
+            </div>
+            <div class="form-group container-fluid">
+                Nội dung
+                <div class="col-md-12">
+                    <textarea id="noidung" class="form-control" name="NOIDUNG" style="height:200px;">@ViewBag.NOIDUNG</textarea>
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorNOIDUNG</small>
+            </div>
+            
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;margin-top:10px">
+                    <input id="save" type="submit" value="Gửi đi" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+}
+
+

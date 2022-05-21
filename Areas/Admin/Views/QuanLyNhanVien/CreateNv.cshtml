@@ -1,0 +1,77 @@
+﻿@model EstateSolution.Models.NHANVIEN
+@{
+    ViewBag.Title = "CreateNv";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyNhanVien", "QuanLyNhanVien")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    @using (Html.BeginForm("CreateNv", "QuanLyNhanVien", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <h3 style="margin-left:1.5%">Thêm mới nhân viên</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group container-fluid">
+                Họ và tên
+                <div class="col-md-12">
+                    <input id="name" type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorHOTEN</small>
+            </div>
+            <div class="form-group container-fluid">
+                Giới tính
+                <div class="col-md-12">
+                    @Html.DropDownList("GIOITINH", null, new { @id="gender", @class = "form-control" })
+                </div>
+
+            </div>
+            <div class="form-group container-fluid">
+                Địa chỉ
+                <div class="col-md-12">
+                    <input type="text" id="address" name="DIACHI" class="form-control" value="@ViewBag.DIACHI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIACHI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Email
+                <div class="col-md-12">
+                    <input type="text" id="email" name="EMAIL" class="form-control" value="@ViewBag.EMAIL" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorEMAIL</small>
+            </div>
+            <div class="form-group container-fluid">
+                Điện thoại
+                <div class="col-md-12">
+                    <input type="number" id="phonenumber" name="DIENTHOAI" class="form-control" value="@ViewBag.DIENTHOAI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIENTHOAI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Facebook
+                <div class="col-md-12">
+                    <input type="text" id="facebook" name="FACEBOOK" class="form-control" value="@ViewBag.FACEBOOK" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Chức vụ
+                <div class="col-md-12">
+                    @Html.DropDownList("MAPQ", ViewBag.MAPQ as SelectList, new { @id="phanquyen", @class = "form-control" })
+                </div>
+            </div>
+
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input id="save" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>
+
+

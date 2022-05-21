@@ -53,35 +53,39 @@
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="firstname">Họ và tên</label>
-                                        <input type="text" class="form-control" id="firstname" name="HOTEN" required>
+                                        <input type="text" class="form-control" id="firstname" name="HOTEN" value="@ViewBag.HOTEN">
                                     </div>
+                                    <small id="errors" style="color:red;">@ViewBag.ErrorHOTEN</small>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="email">Email</label>
-                                        <input type="email" class="form-control" id="email" name="EMAIL" required>
+                                        <input type="text" class="form-control" id="email" name="EMAIL" value="@ViewBag.EMAIL">
                                     </div>
+                                    <small id="errors" style="color: red;">@ViewBag.ErrorEMAIL</small>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="lastname">Tiêu đề</label>
-                                        <input type="text" class="form-control" id="lastname" name="TIEUDE">
+                                        <input type="text" class="form-control" id="lastname" name="TIEUDE" value="@ViewBag.TIEUDE">
                                     </div>
+                                    <small id="errors" style="color:red;">@ViewBag.ErrorTIEUDE</small>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="form-group">
                                         <label for="subject">Ảnh minh chứng</label>
-                                        <input type="file" class="form-control" id="subject" name="fFileUpload" required>
+                                        <input type="file" class="form-control" id="subject" name="fFileUpload">
                                     </div>
                                 </div>
                                 <div class="col-sm-12">
                                     <div class="form-group">
                                         <label for="message">Nội dung</label>
-                                        <textarea id="message" class="form-control" style="height:200px" name="NOIDUNG"></textarea>
+                                        <textarea id="message" class="form-control" style="height:200px" name="NOIDUNG" value="@ViewBag.NOIDUNG"></textarea>
                                     </div>
+                                    <small id="errors" style="color:red;">@ViewBag.ErrorNOIDUNG</small>
                                 </div>
                                 <div class="col-sm-12 text-center">
-                                    <button type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send message</button>
+                                    <button id="submit" type="submit" class="btn btn-primary"><i class="fa fa-envelope-o"></i> Send message</button>
                                 </div>
                             </div>
                             <!-- /.row -->

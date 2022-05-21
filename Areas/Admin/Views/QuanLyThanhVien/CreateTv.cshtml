@@ -1,0 +1,94 @@
+﻿@model EstateSolution.Models.THANHVIEN
+@{
+    ViewBag.Title = "CreateTv";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyThanhVien", "QuanLyThanhVien")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    @using (Html.BeginForm("CreateTv", "QuanLyThanhVien", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <h3 style="margin-left:1.5%">Thêm thành viên mới</h3>
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group container-fluid">
+                Họ và tên
+                <div class="col-md-12">
+                    <input id="name" type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorHOTEN</small>
+            </div>
+            <div class="form-group container-fluid">
+                Giới tính
+                <div class="col-md-12">
+                    @Html.DropDownList("GIOITINH", null, new { @id="gender", @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Địa chỉ
+                <div class="col-md-12">
+                    <input id="address" type="text" name="DIACHI" class="form-control" value="@ViewBag.DIACHI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIACHI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Email
+                <div class="col-md-12">
+                    <input id="email" type="text" name="EMAIL" class="form-control" value="@ViewBag.EMAIL" />
+                    <small id="errors" style="color:red">@Request.QueryString["tbe"]</small>
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorEMAIL</small>
+            </div>
+            <div class="form-group container-fluid">
+                Điện thoại
+                <div class="col-md-12">
+                    <input id="phonenumber" type="number" name="DIENTHOAI" class="form-control" value="@ViewBag.DIENTHOAI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIENTHOAI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Tài khoản
+                <div class="col-md-12">
+                    <input id="username" type="text" name="TAIKHOAN" class="form-control" value="@ViewBag.TAIKHOAN" />
+                    <small id="errors" style="color:red">@Request.QueryString["tbt"]</small>
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTAIKHOAN</small>
+            </div>
+            <div class="form-group container-fluid">
+                Mật khẩu
+                <div class="col-md-12">
+                    <input id="password" type="text" name="MATKHAU" class="form-control" value="@ViewBag.MATKHAU" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorMATKHAU</small>
+            </div>
+            <div class="form-group container-fluid">
+                Facebook
+                <div class="col-md-12">
+                    <input id="facebook" type="text" name="FACEBOOK" class="form-control" value="@ViewBag.FACEBOOK"/>
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Ảnh đại diện
+                <div class="col-md-12">
+                    <input id="avatar" type="file" name="ANHDAIDIEN" class="form-control" />
+                </div>
+            </div>
+
+
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input id="save" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>
+
+
+

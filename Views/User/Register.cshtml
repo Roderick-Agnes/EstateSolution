@@ -30,18 +30,17 @@
                             <div class="form-group">
                                 <label for="name">Họ và tên<small style="color:red"> (*)</small></label>
                                 <input type="text" class="form-control" id="name" name="HoTenTV" value=@ViewBag.HoTenTV>
-                                <small style="color:red;text-align:right">@ViewData["err1"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err1"]</small>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email<small style="color:red"> (*)</small></label>
                                 <input type="text" class="form-control" id="email" name="Email" value=@ViewData["Email"]>
-                                <small style="color:red;text-align:right">@ViewData["err5"]</small>
-                                <small style="color:red;text-align:right">@ViewData["err11"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err5"]</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Giới tính</label>
-                                <select class="form-control" id="" name="GioiTinh">
+                                <select class="form-control" id="gender" name="GioiTinh">
                                     @if (@ViewData["GioiTinh"] != null && @ViewData["GioiTinh"].Equals("Nữ"))
                                     {
                                         <option>Nữ</option>
@@ -56,22 +55,28 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="name">Địa chỉ</label>
-                                <input type="text" class="form-control" id="" name="DiaChi" value=@ViewData["DiaChi"]>
-                                <small style="color:red;text-align:right">@ViewData["err6"]</small>
+                                <label for="name">Địa chỉ<small style="color:red"> (*)</small></label>
+                                <input type="text" class="form-control" id="address" name="DiaChi" value=@ViewData["DiaChi"]>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err6"]</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Điện thoại<small style="color:red"> (*)</small></label>
-                                <input type="text" class="form-control" id="" name="DienThoai" value=@ViewData["DienThoai"]>
-                                <small style="color:red;text-align:right">@ViewData["err7"]</small>
+                                <input type="text" class="form-control" id="phonenumber" name="DienThoai" value=@ViewData["DienThoai"]>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err7"]</small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Link facebook</label>
+                                <input type="text" class="form-control" id="facebook" name="Facebook" value=@ViewData["Facebook"]>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err15"]</small>
                             </div>
 
                             <div class="form-group">
                                 <label for="name">Tên đăng nhập<small style="color:red"> (*)</small></label>
-                                <input type="text" class="form-control" id="" name="UserName" value=@ViewData["UserName"]>
-                                <small style="color:red;text-align:right">@ViewData["err2"]</small>
-                                <small style="color:red;text-align:right">@ViewData["err10"]</small>
+                                <input type="text" class="form-control" id="username" name="UserName" value=@ViewData["UserName"]>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err2"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err10"]</small>
 
                             </div>
 
@@ -81,7 +86,7 @@
                                 <div style="text-align: right">
                                     <i class="fa fa-eye-slash" id="icon-fa-eye" style="position:absolute;margin-top:-29px;margin-left:-20px;"></i>
                                 </div>
-                                <small style="color:red;text-align:right">@ViewData["err3"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err3"]</small>
                             </div>
 
                             <div class="form-group">
@@ -90,12 +95,12 @@
                                 <div style="text-align: right">
                                     <i class="fa fa-eye-slash" id="icon-fa-cfeye" style="position:absolute;margin-top:-29px;margin-left:-20px;"></i>
                                 </div>
-                                <small style="color:red;text-align:right">@ViewData["err4"]</small>
-                                <small style="color:red;text-align:right">@ViewData["err9"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err4"]</small>
+                                <small id="errors" style="color:red;text-align:right">@ViewData["err9"]</small>
                             </div>
 
                             <div class="text-center">
-                                <button type="submit" class="btn btn-default">Đăng ký</button>
+                                <button id="submit" type="submit" class="btn btn-default">Đăng ký</button>
                             </div>
                         </form>
                     </div>

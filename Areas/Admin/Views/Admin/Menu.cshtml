@@ -7,26 +7,26 @@
 
     <div class="nav">
         <div class="sb-sidenav-menu-heading">Core</div>
-        <a class="nav-link" href="/Admin/Admin/Index?month=@Convert.ToInt32(DateTime.Now.Month)">
+        <a id="indexmenu" class="nav-link" href="/Admin/Admin/Index?month=@Convert.ToInt32(DateTime.Now.Month)">
             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
             Trang chủ
         </a>
         <div class="sb-sidenav-menu-heading">Interface</div>
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyBDS", "Admin")">
+        <a id="menuqlbds" class="nav-link collapsed" href="@Url.Action("QuanLyBDS", "QuanLyBatDongSan")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý bất động sản
         </a>
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyLoaiBDS", "Admin")">
+        <a id="menuloaibds" class="nav-link collapsed" href="@Url.Action("QuanLyLoaiBDS", "QuanLyLoaiBatDongSan")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý loại
         </a>
         @if (nv.PHANQUYEN.CHUCVU.Equals("Admin"))
         {
-            <a class="nav-link collapsed" href="@Url.Action("QuanLyNhanVien", "Admin")">
+            <a id="menuqlnv" class="nav-link collapsed" href="@Url.Action("QuanLyNhanVien", "QuanLyNhanVien")">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                 Quản lý nhân viên
             </a>
-            <a class="nav-link collapsed" href="@Url.Action("QuanLyTaiKhoanQuanTri", "Admin")">
+            <a id="menuqltkqt" class="nav-link collapsed" href="@Url.Action("QuanLyTaiKhoanQuanTri", "QuanLyTaiKhoanQuanTri")">
                 <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                 Quản lý tài khoản
             </a>
@@ -34,19 +34,19 @@
         else if (nv.PHANQUYEN.CHUCVU.Equals("Nhân viên")){ 
             
         }
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyThanhVien", "Admin")">
+        <a id="menuqltv" class="nav-link collapsed" href="@Url.Action("QuanLyThanhVien", "QuanLyThanhVien")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý thành viên
         </a>
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyDanhGia", "Admin")">
+        <a id="menuqldg" class="nav-link collapsed" href="@Url.Action("QuanLyDanhGia", "QuanLyDanhGia")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý đánh giá
         </a>
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyDonDatCoc", "Admin")">
+        <a id="menuqlddc" class="nav-link collapsed" href="@Url.Action("QuanLyDonDatCoc", "QuanLyDonDatCoc")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý đơn đặt cọc
         </a>
-        <a class="nav-link collapsed" href="@Url.Action("QuanLyTinNhan", "Admin")">
+        <a id="menuqltn" class="nav-link collapsed" href="@Url.Action("QuanLyTinNhan", "QuanLyTinNhan")">
             <div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
             Quản lý tin nhắn
         </a>

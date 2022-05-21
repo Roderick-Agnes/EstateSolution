@@ -1,0 +1,74 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "DetailDon";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyDonDatCoc", "QuanLyDonDatCoc")"><button class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    <h3 style="margin-left:1.5%">Thông tin đơn đặt cọc</h3>
+    <div class="form-horizontal container-fluid" style="padding-top:1%">
+        <div class="form-group container-fluid">
+            Mã đơn
+            <div class="col-md-12">
+                <input type="text" name="MADON" class="form-control" value="@ViewBag.MADON" />
+                <input type="hidden" name="MABDS" class="form-control" value="@ViewBag.MABDS" />
+                <input type="hidden" name="MALOAI" class="form-control" value="@ViewBag.MALOAI" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Khách hàng
+            <div class="col-md-12">
+                <input type="text" name="HOTEN" class="form-control" value="@ViewBag.HOTEN" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Ngày lập đơn
+            <div class="col-md-12">
+                <input type="text" name="NGAYDAT" class="form-control" value="@Html.FormatValue(@ViewBag.NGAYDAT, "{0:dd/MM/yyyy}")" />
+            </div>
+        </div>
+
+        <div class="form-group container-fluid">
+            Tên loại
+            <div class="col-md-12">
+                <input type="text" name="TENLOAI" class="form-control" value="@ViewBag.TENLOAI" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Tên bất động sản
+            <div class="col-md-12">
+                <input type="text" name="TENBDS" class="form-control" value="@ViewBag.TENBDS" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Tổng tiền
+            <div class="col-md-12">
+                <input type="text" name="TONGTIEN" class="form-control" value="@ViewBag.TONGTIEN tỷ ₫" />
+            </div>
+        </div>
+        @if (Convert.ToInt32(@ViewBag.DUYET) == 0)
+        {
+            <div class="form-group container-fluid">
+                Tình trạng
+                <div class="col-md-12">
+                    <input type="text" class="form-control" value="Đang chờ xử lý..." />
+                </div>
+            </div>
+        }
+        @if (Convert.ToInt32(@ViewBag.DUYET) == 1)
+        {
+            <div class="form-group container-fluid">
+                Tình trạng
+                <div class="col-md-12">
+                    <input type="text" class="form-control" value="Đơn đặt cọc đã được xử lý" readonly/>
+                </div>
+            </div>
+        }
+
+        <br />
+    </div>
+
+</div>
+

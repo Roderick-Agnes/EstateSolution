@@ -258,7 +258,7 @@
                         }
                         else
                         {
-                            @Html.Action("BinhLuanPartial", "Home", new { ma = Convert.ToInt32(@Model.MABDS) })
+                            @Html.Action("BinhLuanPartial", "Home", new { ma = Convert.ToInt32(@ViewBag.MABDS) })
                         }
                     </div>
 

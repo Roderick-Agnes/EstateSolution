@@ -14,6 +14,18 @@ namespace EstateSolution.Controllers
     {
         dbBatDongSanDataContext data = new dbBatDongSanDataContext();
 
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
         public List<BDS> ListBatDongSan(int count)
         {
             return data.BDS.Where(n => n.DUYET != 0 && n.MATV > 0)/*.Take(count)*/.ToList();
@@ -45,7 +57,66 @@ namespace EstateSolution.Controllers
         [ValidateInput(false)]
         public ActionResult Contact(FormCollection f, HttpPostedFileBase fFileUpload)
         {
-            if (ModelState.IsValid)
+            ViewBag.HOTEN = f["HOTEN"];
+            ViewBag.EMAIL = f["EMAIL"];
+            ViewBag.TIEUDE = f["TIEUDE"];
+            ViewBag.NOIDUNG = f["NOIDUNG"];
+
+            if (f["HOTEN"].Equals(""))
+            {
+                ViewBag.ErrorHOTEN = "Vui lòng nhập họ tên!";
+                return View();
+            }
+            else if (f["HOTEN"].ToString().Length > 30)
+            {
+                ViewBag.ErrorHOTEN = "Họ tên không được vượt quá 30 kí tự!";
+                return View();
+            }
+            else if (f["EMAIL"].Equals(""))
+            {
+                ViewBag.ErrorEMAIL = "Vui lòng nhập email!";
+                return View();
+            }
+            else if (!IsValidEmail(f["EMAIL"].ToString()))
+            {
+                ViewBag.ErrorEMAIL = "Vui lòng nhập đúng định dạng email!";
+                return View();
+            }
+            else if (f["EMAIL"].ToString().Length > 50)
+            {
+                ViewBag.ErrorEMAIL = "Email không được vượt quá 50 kí tự!";
+                return View();
+            }
+            else if (f["TIEUDE"].ToString().Length > 100)
+            {
+                ViewBag.ErrorTIEUDE = "Tiêu đề không được vượt quá 100 kí tự!";
+                return View();
+            }
+            else if (f["NOIDUNG"].Equals(""))
+            {
+                ViewBag.ErrorNOIDUNG = "Vui lòng nhập nội dung!";
+                return View();
+            }
+            else if (f["NOIDUNG"].ToString().Length > 2000)
+            {
+                ViewBag.ErrorNOIDUNG = "Nội dung không được vượt quá 2000 kí tự!";
+                return View();
+            }
+            if (fFileUpload == null)
+            {
+                TINNHAN_MAIL tn = new TINNHAN_MAIL();
+                tn.HOTEN = f["HOTEN"];
+                tn.EMAIL = f["EMAIL"];
+                tn.TIEUDE = f["TIEUDE"];
+                tn.NOIDUNG = f["NOIDUNG"];
+                tn.NGAYNHAN = DateTime.Now;
+                //tn.HINHANH = sFileName;
+                tn.TINHTRANG_PHANHOI = 0;
+                data.TINNHAN_MAILs.InsertOnSubmit(tn);
+                data.SubmitChanges();
+                return RedirectToAction("ThongBaoContact", "Home");
+            }
+            else if (ModelState.IsValid)
             {
                 TINNHAN_MAIL tn = new TINNHAN_MAIL();
                 var sFileName = Path.GetFileName(fFileUpload.FileName);
@@ -72,6 +143,7 @@ namespace EstateSolution.Controllers
                 data.TINNHAN_MAILs.InsertOnSubmit(tn);
                 data.SubmitChanges();
                 return RedirectToAction("ThongBaoContact", "Home");
+
             }
             return View();
         }
@@ -196,6 +268,7 @@ namespace EstateSolution.Controllers
         public ActionResult Detail(int idBds, int state)
         {
             ViewBag.STATE = state;
+            ViewBag.MABDS = idBds;
             var bds = data.BDS.SingleOrDefault(n => n.MABDS == idBds);
             var tenLoai = data.LOAIBDS.SingleOrDefault(n => n.MALOAI == (int)bds.MALOAI_BDS);
             ViewBag.TenLoaiBDS = tenLoai.TENLOAI.ToString();

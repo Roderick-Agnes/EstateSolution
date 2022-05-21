@@ -1,0 +1,131 @@
+﻿@model EstateSolution.Models.BDS
+
+@{
+    ViewBag.Title = "CreateBds";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyBDS", "QuanLyBatDongSan")"><button id="back" class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    @using (Html.BeginForm("CreateBds", "QuanLyBatDongSan", FormMethod.Post, new { ma = @Request.QueryString["ma"], enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+        <h3 style="margin-left:1.5%">Thêm mới bất động sản</h3>
+
+        <div class="form-horizontal container-fluid" style="padding-top:1%">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group container-fluid">
+                Chọn loại bất động sản:
+                <div class="col-md-12">
+                    @Html.DropDownList("MALOAI", ViewBag.MALOAI as SelectList, new { @id = "loaibds", @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group container-fluid">
+                Tên bất động sản
+                <div class="col-md-12">
+                    <input id="name" type="text" name="TENBDS" class="form-control" value="@ViewBag.TENBDS" />
+                    <input type="hidden" name="maad" class="form-control" value="@Request.QueryString["ma"]" />
+                    <input type="hidden" name="maad2" class="form-control" value="@ViewBag.MAAD" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTENBDS</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Thông tin
+                <div class="col-md-12">
+                    <textarea id="thongtin" class="form-control" name="THONGTIN" style="height:200px;">@ViewBag.ThongTin</textarea>
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorTHONGTIN</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Mức giá(<span style="color:red;text-align:right">Đơn vị: Tỷ đồng</span>)
+                <div class="col-md-12">
+                    <input id="mucgia" type="number" name="GIA" class="form-control" value="@ViewBag.GIA" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorGIA</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Số phần trăm yêu cầu cọc trước
+                <div class="col-md-12">
+                    <input id="phantram" type="number" name="COCTRUOC" class="form-control" value="@ViewBag.COCTRUOC" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorCOCTRUOC</small>
+            </div>
+
+            <div class="form-group container-fluid">
+                Địa chỉ
+                <div class="col-md-12">
+                    <input id="diachi" type="text" name="DIACHI" class="form-control" value="@ViewBag.DIACHI" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIACHI</small>
+            </div>
+            <div class="form-group container-fluid">
+                Diện tích
+                <div class="col-md-12">
+                    <input id="dientich" type="text" name="DIENTICH" class="form-control" value="@ViewBag.DIENTICH" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorDIENTICH</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số phòng ngủ
+                <div class="col-md-12">
+                    <input id="sophongngu" type="number" name="SOPHONGNGU" class="form-control" value="@ViewBag.SOPHONGNGU" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOPHONGNGU</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số phòng tắm
+                <div class="col-md-12">
+                    <input id="sophongtam" type="number" name="SOPHONGTAM" class="form-control" value="@ViewBag.SOPHONGTAM" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOPHONGTAM</small>
+            </div>
+            <div class="form-group container-fluid">
+                Số gara
+                <div class="col-md-12">
+                    <input id="sogara" type="number" name="SOGARA" class="form-control" value="@ViewBag.SOGARA" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorSOGARA</small>
+            </div>
+            <div class="form-group container-fluid">
+                Pháp lý
+                <div class="col-md-12">
+                    <input id="phaply" type="text" name="PHAPLY" class="form-control" value="@ViewBag.PHAPLY" />
+                </div>
+                <small id="errors" style="color:red;">@ViewBag.ErrorPHAPLY</small>
+            </div>
+            <div class="form-group container-fluid">
+                Ảnh slide 1
+                <div class="col-md-12">
+                    <input id="avatar1" type="file" name="fileUpload" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Ảnh slide 2
+                <div class="col-md-12">
+                    <input id="avatar2" type="file" name="fileUpload2" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group container-fluid">
+                Ảnh slide 3
+                <div class="col-md-12">
+                    <input id="avatar3" type="file" name="fileUpload3" class="form-control" />
+                </div>
+            </div>
+            <small id="errors" style="color:red;">@ViewBag.Tb</small>
+            <br />
+            <div class="form-group container-fluid row">
+                <div class="col-md-1" style="padding-left: 0;">
+                    <input id="save" type="submit" value="Create" class="btn btn-primary" />
+                </div>
+                
+            </div>
+
+        </div>
+    }
+    
+</div>

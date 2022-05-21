@@ -1,0 +1,80 @@
+﻿@using EstateSolution.Models;
+@{
+    ViewBag.Title = "DetailTn";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+<div class="container" style="text-align:left;padding-top:10px;position:absolute">
+    <a href="@Url.Action("QuanLyTinNhan", "QuanLyTinNhan")"><button class="btn btn-danger">Back</button></a>
+</div>
+<div class="container" style="background-color:#fff;margin-top: 1%; margin-bottom: 1%; padding-top: 2%; padding-bottom: 2%; border: 1px solid #c7c7c7; box-shadow: rgba(50, 50, 105, 0.15) 0px 2px 5px 0px, rgba(0, 0, 0, 0.05) 0px 1px 1px 0px; border-radius: 15px ">
+    <h3 style="margin-left:1.5%">Thông tin tin nhắn phản hồi từ khách hàng</h3>
+    <div class="form-horizontal container-fluid" style="padding-top:1%">
+        <div class="form-group container-fluid">
+            Mã tin nhắn
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.MATN" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Họ và tên
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.HOTEN " />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Tiêu đề
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@ViewBag.TIEUDE " />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Nội dung
+            <div class="col-md-12">
+                <textarea class="form-control" name="NOIDUNG" style="height:200px;">@ViewBag.NOIDUNG</textarea>
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Email
+            <div class="col-md-12">
+                <input type="email" class="form-control" value="@ViewBag.EMAIL " />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Ngày phản hồi
+            <div class="col-md-12">
+                <input type="text" class="form-control" value="@Html.FormatValue(@ViewBag.NGAYNHAN, "{0:dd/MM/yyyy}")" />
+            </div>
+        </div>
+        <div class="form-group container-fluid">
+            Hình ảnh phản hồi
+            <div class="col-md-12">
+                <img src="~/assets/img/img-contact/@ViewBag.HINHANH" width="70%" height="auto" />
+            </div>
+        </div>
+        @if (@ViewBag.TINHTRANGPH.Equals("0"))
+        {
+            <div class="form-group container-fluid">
+                Tình trạng
+                <div class="col-md-12">
+                    <input type="text" class="form-control" value="Chưa phản hồi" readonly />
+                </div>
+            </div>
+        }
+        else if (@ViewBag.TINHTRANGPH.Equals("1"))
+        {
+            <div class="form-group container-fluid">
+                Tình trạng
+                <div class="col-md-12">
+                    <input type="text" class="form-control" value="Đã phản hồi" readonly />
+                </div>
+            </div>
+
+        }
+        @Html.Action("PartialDetailListTnSended", "QuanLyTinNhan", new { ma = @ViewBag.MATN })
+
+        <br />
+
+    </div>
+
+</div>
+

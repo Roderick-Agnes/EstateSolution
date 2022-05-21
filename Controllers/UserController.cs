@@ -14,6 +14,30 @@ namespace EstateSolution.Controllers
     {
         // GET: User
         dbBatDongSanDataContext data = new dbBatDongSanDataContext();
+        bool IsValidEmail(string email)
+        {
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == email;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+        public static string GetMD5(string str)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] fromData = Encoding.UTF8.GetBytes(str);
+            byte[] targetData = md5.ComputeHash(fromData);
+            string byte2String = null;
+            for (int i = 0; i < targetData.Length; i++)
+            {
+                byte2String += targetData[i].ToString("x2");
+            }
+            return byte2String;
+        }
         [HttpGet]
         public ActionResult LoginPage(string id, string tb)
         {
@@ -33,17 +57,43 @@ namespace EstateSolution.Controllers
         [HttpPost]
         public ActionResult LoginPage(FormCollection f, string id)
         {
+            ViewBag.TAIKHOAN = f["TAIKHOAN"];
+
             var sUserName = f["TAIKHOAN"];
             var sPw = f["MATKHAU"];
-            THANHVIEN tvs = data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName && n.MATKHAU == sPw && n.STATUS_DELETE != 0);
+            THANHVIEN tvs = data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName && n.MATKHAU == GetMD5(sPw) && n.STATUS_DELETE != 0);
 
             if (tvs == null)
             {
                 string state = id.ToString();
-               
+                THANHVIEN tvs2 = data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName && n.STATUS_DELETE != 0);
+                
+                if (f["TAIKHOAN"].Equals(""))
+                {
+                    ViewBag.ErrorTAIKHOAN = "Tài khoản không được để trống!";
+                }
+                else if (f["TAIKHOAN"].ToString().Length > 50)
+                {
+                    ViewBag.ErrorTAIKHOAN = "Tài khoản không được vượt quá 50 kí tự!";
+                }
+                else if (f["MATKHAU"].Equals(""))
+                {
+                    ViewBag.ErrorMATKHAU = "Mật khẩu không được để trống!";
+                }
+                else if (tvs2 == null)
+                {
+                    ViewBag.ErrorTAIKHOAN = "Tài khoản không tồn tại trên hệ thống!";
+                }
+                
+                else if (tvs2.MATKHAU.Equals(f["MATKHAU"].ToString()) == false)
+                {
+                    ViewBag.ErrorMATKHAU = "Mật khẩu không chính xác!";
+                }
+                
 
-                ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
-                if(f["ID"].Length > 0 && f["IdBds"].Length > 0)
+
+                //ViewBag.Thongbao = "Tên đăng nhập hoặc mật khẩu không đúng";
+                if (f["ID"].Length > 0 && f["IdBds"].Length > 0)
                 {
                     ViewBag.ID = Convert.ToInt32(f["ID"]);
                     ViewBag.IdBds = Convert.ToInt32(f["IdBds"]);
@@ -54,7 +104,7 @@ namespace EstateSolution.Controllers
                     ViewBag.IdBds = Convert.ToInt32(f["IdBds2"]);
                 }
                 
-                //ViewBag.IdBds = f["IdBds"].ToString();
+                
                 return View();
                 //return Redirect("~/User/LoginPage?id=" + Convert.ToInt32(state) + "&&tb=" + f["IdBds"].ToString());
                 //return RedirectToAction("LoginPage", "User", new { id = Convert.ToInt32(state), tb = f["IdBds"].ToString() });
@@ -84,7 +134,7 @@ namespace EstateSolution.Controllers
                 }
                 else
                 {
-                    THANHVIEN tv = data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName && n.MATKHAU == sPw && n.STATUS_DELETE != 0);
+                    THANHVIEN tv = data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName && n.MATKHAU == GetMD5(sPw) && n.STATUS_DELETE != 0);
                     if (tv != null)
                     {
                         Session["TAIKHOAN"] = tv;
@@ -159,6 +209,7 @@ namespace EstateSolution.Controllers
             var sEmail = collection["Email"];
             var sDienThoai = collection["DienThoai"];
             var sGioiTinh = collection["GioiTinh"];
+            var lFacebook = collection["Facebook"];
 
             string tmpName = "";
             var hoVaTen = "";  // SAVE DATA
@@ -208,31 +259,82 @@ namespace EstateSolution.Controllers
             ViewData["Email"] = collection["Email"];
             ViewData["DienThoai"] = collection["DienThoai"];
             ViewData["GioiTinh"] = collection["GioiTinh"];
+            ViewData["Facebook"] = collection["Facebook"];
 
             //var dNgayDK = String.Format("{0:MM/dd/yyyy}", getDate());
             if (String.IsNullOrEmpty(sHoTenTV))
             {
                 ViewData["err1"] = "Họ tên không được rỗng";
             }
+            
+            else if (sHoTenTV.Length > 50)
+            {
+                ViewData["err1"] = "Họ tên không được vượt quá 50 kí tự!";
+            }
+            else if (!IsValidEmail(sEmail))
+            {
+                ViewData["err5"] = "Vui lòng nhập đúng định dạng email!";
+                return View();
+            }
             else if (String.IsNullOrEmpty(sEmail))
             {
                 ViewData["err5"] = "Email không được rỗng";
             }
-            else if (String.IsNullOrEmpty(sDiaChi))
+            else if (data.THANHVIENs.SingleOrDefault(n => n.EMAIL == sEmail) != null)
+            {
+                ViewData["err5"] = "Email đã được sử dụng";
+            }
+            else if (sEmail.Length > 50)
+            {
+                ViewData["err5"] = "Email không được vượt quá 50 kí tự!";
+            }
+            else if (String.IsNullOrEmpty(sDiaChi)) 
             {
                 ViewData["err6"] = "Địa chỉ không được rỗng";
+            }
+            else if (sDiaChi.Length > 50)
+            {
+                ViewData["err6"] = "Địa chỉ không được vượt quá 50 kí tự!";
             }
             else if (String.IsNullOrEmpty(sDienThoai))
             {
                 ViewData["err7"] = "Số điện thoại không được rỗng";
             }
+            else if (sDienThoai.Length > 15)
+            {
+                ViewData["err7"] = "Số điện thoại không được vượt quá 15 kí tự!";
+            }
+            else if (sDienThoai.Length < 10)
+            {
+                ViewData["err7"] = "Số điện thoại phải tối thiểu 10 kí tự!";
+            }
+            else if (lFacebook.Length > 255)
+            {
+                ViewData["err15"] = "Link facebook không được vượt quá 255 kí tự!";
+            }
             else if (String.IsNullOrEmpty(sUserName))
             {
                 ViewData["err2"] = "Tên đăng nhập không được rỗng";
             }
+            else if (data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName) != null)
+            {
+                ViewData["err10"] = "Tên đăng nhập đã tồn tại";
+            }
+            else if (sUserName.Length > 50)
+            {
+                ViewData["err2"] = "Tên đăng nhập không được vượt quá 50 kí tự!";
+            }
             else if (String.IsNullOrEmpty(sPw))
             {
                 ViewData["err3"] = "Mật khẩu không được để trống";
+            }
+            else if (sPw.Length < 6)
+            {
+                ViewData["err3"] = "Mật khẩu phải có tối thiểu là 6 kí tự!";
+            }
+            else if (sPw.Length > 50)
+            {
+                ViewData["err3"] = "Mật khẩu không được vượt quá 50 kí tự!";
             }
             else if (String.IsNullOrEmpty(sPwNL))
             {
@@ -246,14 +348,7 @@ namespace EstateSolution.Controllers
             {
                 ViewData["err9"] = "Mật khẩu không trùng khớp";
             }
-            else if (data.THANHVIENs.SingleOrDefault(n => n.EMAIL == sEmail) != null)
-            {
-                ViewData["err11"] = "Email đã được sử dụng";
-            }
-            else if (data.THANHVIENs.SingleOrDefault(n => n.TAIKHOAN == sUserName) != null)
-            {
-                ViewData["err10"] = "Tên đăng nhập đã tồn tại";
-            }
+            
 
             else
             {
@@ -264,7 +359,8 @@ namespace EstateSolution.Controllers
                 tv.DIENTHOAI = sDienThoai;
                 tv.NGAYDKTK = @DateTime.Now;
                 tv.TAIKHOAN = sUserName;
-                tv.MATKHAU = sPw;
+                tv.MATKHAU = GetMD5(sPw);
+                tv.LINK_FACEBOOK = lFacebook;
                 tv.STATUS_DELETE = 1;
                 data.THANHVIENs.InsertOnSubmit(tv);
                 data.SubmitChanges();

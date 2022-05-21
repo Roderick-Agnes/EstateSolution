@@ -76,7 +76,7 @@ chart.render();
             <div class="col-md-12 row">
                 @if (Request.QueryString["month"] == null)
                 {
-                    @Html.Action("PartialCart", "Admin", new { month = DateTime.Now.ToString() })
+                    @Html.Action("PartialCart", "Admin", new { month = DateTime.Now.Month.ToString() })
                 }
                 else
                 {
